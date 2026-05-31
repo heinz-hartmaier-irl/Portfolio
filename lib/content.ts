@@ -26,9 +26,9 @@ export const profile = {
   name: "Heinz Hartmaier",
   role: "Développeur informatique",
   baseline: "Interfaces web modernes, applications interactives et expériences numériques utiles.",
-  email: "contact@exemple.fr",
-  github: "https://github.com/",
-  linkedin: "https://www.linkedin.com/",
+  email: "heinzhartmaier.pro@gmail.com",
+  github: "https://github.com/heinz-hartmaier-irl",
+  linkedin: "https://www.linkedin.com/in/heinz-hartmaier-9b911326b/",
   location: "France",
   cvPath: "/cv.pdf"
 };
@@ -193,19 +193,29 @@ export const timeline = [
 
 export const tracks = [
   {
-    title: "Focus synth",
+    title: "Alright",
     artist: "Local track",
-    src: "/music/focus-synth.mp3"
+    src: "/music/Alright.mp3"
   },
   {
-    title: "Night compile",
+    title: "Cream",
     artist: "Local track",
-    src: "/music/night-compile.mp3"
+    src: "/music/Cream.mp3"
   },
   {
-    title: "Soft pixels",
+    title: "Daily",
     artist: "Local track",
-    src: "/music/soft-pixels.mp3"
+    src: "/music/Daily.mp3"
+  },
+  {
+    title: "Vacation",
+    artist: "Local track",
+    src: "/music/Vacation.mp3"
+  },
+  {
+    title: "Waiting on you",
+    artist: "Local track",
+    src: "/music/WAITING_ON_YOU.mp3"
   }
 ];
 
