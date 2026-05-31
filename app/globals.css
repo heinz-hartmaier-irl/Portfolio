@@ -162,6 +162,21 @@ a {
   }
 }
 
+@keyframes loading-sheen {
+  0% {
+    transform: translate3d(-120%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(260%, 0, 0);
+  }
+}
+
+.loading-sheen {
+  animation: loading-sheen 1.8s ease-in-out infinite;
+  will-change: transform;
+}
+
 @keyframes bento-shake {
   0%,
   100% {

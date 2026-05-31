@@ -9,6 +9,7 @@ import {
   UserRound
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import type { ProjectCategory } from "@/lib/project-categories";
 
 export type BentoSize = "sm" | "md" | "wide" | "lg" | "xl";
 export type BentoAccent = "rose" | "orange" | "gold";
@@ -22,6 +23,21 @@ export type BentoItem = {
   accent: BentoAccent;
 };
 
+export type PortfolioProject = {
+  slug: string;
+  title: string;
+  summary: string;
+  description: string;
+  technologies: string[];
+  challenges: string[];
+  results: string[];
+  github: string;
+  demo: string;
+  image: string;
+  unity?: boolean;
+  category: ProjectCategory;
+};
+
 export const profile = {
   name: "Heinz Hartmaier",
   role: "Développeur informatique",
@@ -33,66 +49,66 @@ export const profile = {
   cvPath: "/cv.pdf"
 };
 
-export const bentoItems: BentoItem[] = [
+export const bentoItems = [
   {
     title: "Présentation",
     href: "/about",
     description: "Parcours, objectifs et façon de travailler.",
-    size: "lg",
+    size: "lg" as BentoSize,
     icon: UserRound,
-    accent: "rose"
+    accent: "rose" as BentoAccent
   },
   {
     title: "Projets",
     href: "/projects",
     description: "Réalisations web, applicatives et jeu Unity.",
-    size: "lg",
+    size: "lg" as BentoSize,
     icon: PanelsTopLeft,
-    accent: "gold"
+    accent: "gold" as BentoAccent
   },
   {
     title: "Compétences",
     href: "/skills",
     description: "Front-end, back-end, bases de données, outils.",
-    size: "sm",
+    size: "sm" as BentoSize,
     icon: Code2,
-    accent: "orange"
+    accent: "orange" as BentoAccent
   },
   {
     title: "Expériences",
     href: "/experience",
     description: "Stages, missions, responsabilités et résultats.",
-    size: "wide",
+    size: "wide" as BentoSize,
     icon: BriefcaseBusiness,
-    accent: "rose"
+    accent: "rose" as BentoAccent
   },
   {
     title: "Formation",
     href: "/education",
     description: "Diplômes, apprentissages et certifications.",
-    size: "sm",
+    size: "sm" as BentoSize,
     icon: GraduationCap,
-    accent: "gold"
+    accent: "gold" as BentoAccent
   },
   {
     title: "CV",
     href: "/cv",
     description: "Consultation et téléchargement du CV PDF.",
-    size: "wide",
+    size: "wide" as BentoSize,
     icon: Download,
-    accent: "orange"
+    accent: "orange" as BentoAccent
   },
   {
     title: "Contact",
     href: "/contact",
     description: "Email, GitHub, LinkedIn et formulaire.",
-    size: "wide",
+    size: "wide" as BentoSize,
     icon: Mail,
-    accent: "rose"
+    accent: "rose" as BentoAccent
   }
-];
+] satisfies BentoItem[];
 
-export const projects = [
+export const projects: PortfolioProject[] = [
   {
     slug: "portfolio-bento",
     title: "Portfolio Bento interactif",
@@ -108,7 +124,8 @@ export const projects = [
     results: ["Navigation claire", "Base déployable sur Vercel", "Architecture évolutive"],
     github: "https://github.com/",
     demo: "/",
-    image: "/project-placeholder.svg"
+    image: "/project-placeholder.svg",
+    category: "web" as ProjectCategory
   },
   {
     slug: "jeu-unity",
@@ -126,7 +143,8 @@ export const projects = [
     github: "https://github.com/",
     demo: "/projects/jeu-unity",
     image: "/unity-placeholder.svg",
-    unity: true
+    unity: true,
+    category: "audiovisuel" as ProjectCategory
   },
   {
     slug: "cartographie-web",
@@ -143,9 +161,10 @@ export const projects = [
     results: ["Carte interactive", "Filtres dynamiques", "Interface utilisable sur tablette"],
     github: "https://github.com/",
     demo: "#",
-    image: "/map-placeholder.svg"
+    image: "/map-placeholder.svg",
+    category: "web" as ProjectCategory
   }
-];
+] satisfies PortfolioProject[];
 
 export const skillGroups = [
   {
@@ -188,34 +207,6 @@ export const timeline = [
     title: "Formation développement informatique",
     type: "Formation",
     description: "Apprentissage du développement web, des bases de données, de Git et des bonnes pratiques."
-  }
-];
-
-export const tracks = [
-  {
-    title: "Alright",
-    artist: "Local track",
-    src: "/music/Alright.mp3"
-  },
-  {
-    title: "Cream",
-    artist: "Local track",
-    src: "/music/Cream.mp3"
-  },
-  {
-    title: "Daily",
-    artist: "Local track",
-    src: "/music/Daily.mp3"
-  },
-  {
-    title: "Vacation",
-    artist: "Local track",
-    src: "/music/Vacation.mp3"
-  },
-  {
-    title: "Waiting on you",
-    artist: "Local track",
-    src: "/music/WAITING_ON_YOU.mp3"
   }
 ];
 

@@ -1,44 +1,41 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { AnimatedBackground } from "@/components/animated-background";
 import { SiteHeader } from "@/components/site-header";
 import { AudioDock } from "@/components/audio-dock";
+import { siteContent } from "@/lib/site-content";
+import { getServerLocale } from "@/lib/server-locale";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
+  const home = siteContent[locale].pages.home;
 
-export const metadata: Metadata = {
-  title: {
-    default: "Portfolio développeur - Bento interactif",
-    template: "%s | Portfolio développeur"
-  },
-  description:
-    "Portfolio personnel interactif en Bento Grid pour présenter projets, compétences, expériences, formation, CV et contact.",
-  keywords: [
-    "portfolio",
-    "developpeur",
-    "Next.js",
-    "TypeScript",
-    "Bento Grid",
-    "developpement web"
-  ],
-  openGraph: {
-    title: "Portfolio développeur - Bento interactif",
-    description:
-      "Un hub immersif pour découvrir un profil, des projets et des compétences en développement informatique.",
-    type: "website",
-    locale: "fr_FR"
-  },
-  robots: {
-    index: true,
-    follow: true
-  }
-};
+  return {
+    title: {
+      default: home.title,
+      template: `%s | ${home.title}`
+    },
+    description: home.description,
+    keywords: ["portfolio", "developer", "Next.js", "TypeScript", "Bento Grid", "web development"],
+    openGraph: {
+      title: home.title,
+      description: home.description,
+      type: "website",
+      locale: locale === "fr" ? "fr_FR" : "en_US"
+    },
+    robots: {
+      index: true,
+      follow: true
+    }
+  };
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getServerLocale();
+
   return (
-    <html lang="fr" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className="font-sans antialiased">
         <AnimatedBackground />
         <SiteHeader />
         {children}

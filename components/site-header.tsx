@@ -4,12 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { navigation, profile } from "@/lib/content";
+import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { siteContent } from "@/lib/site-content";
+import { useLocale } from "@/lib/use-locale";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const locale = useLocale();
+  const content = siteContent[locale];
 
   if (pathname === "/") return null;
 
@@ -21,13 +25,13 @@ export function SiteHeader() {
             <Home size={19} />
           </span>
           <span>
-            <span className="block text-sm font-semibold text-text">{profile.name}</span>
-            <span className="block text-xs text-muted">{profile.role}</span>
+            <span className="block text-sm font-semibold text-text">{content.profile.name}</span>
+            <span className="block text-xs text-muted">{content.profile.role}</span>
           </span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
-          {navigation.map((item) => {
+          {content.navigation.map((item) => {
             const active = pathname === item.href;
             return (
               <Link
@@ -44,7 +48,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden lg:block">
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
         <button
           type="button"
@@ -59,8 +66,11 @@ export function SiteHeader() {
       {open ? (
         <nav className="border-t border-line/30 px-4 py-3 lg:hidden" aria-label="Navigation mobile">
           <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2">
-            <ThemeToggle className="col-span-2 justify-self-start" />
-            {navigation.map((item) => {
+            <div className="col-span-2 flex items-center gap-2 justify-self-start">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
+            {content.navigation.map((item) => {
               const Icon = item.icon;
               return (
                 <Link

@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { Grip, Shuffle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { bentoItems, type BentoItem } from "@/lib/content";
+import { siteContent } from "@/lib/site-content";
+import { useLocale } from "@/lib/use-locale";
+import type { BentoItem } from "@/lib/content";
 
 const accentClasses = {
   rose: "text-rose bg-rose/[0.14] border-rose/30",
@@ -66,7 +69,8 @@ function swapLayoutAreas(layout: Record<string, string>, sourceHref: string, tar
 
 export function BentoGrid() {
   const router = useRouter();
-  const [items, setItems] = useState(bentoItems);
+  const locale = useLocale();
+  const [items, setItems] = useState(siteContent[locale].bentoItems);
   const [layout, setLayout] = useState(compactLayouts[0]);
   const [editMode, setEditMode] = useState(false);
   const [draggedHref, setDraggedHref] = useState<string | null>(null);
@@ -77,7 +81,7 @@ export function BentoGrid() {
       const hasSeenBento = window.localStorage.getItem("hasSeenBento");
       if (hasSeenBento) {
         setLayout(randomLayout());
-        setItems(shuffleItems(bentoItems));
+        setItems(shuffleItems(siteContent[locale].bentoItems));
         return;
       }
 
@@ -85,7 +89,7 @@ export function BentoGrid() {
     });
 
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [locale]);
 
   const openCard = (href: string) => {
     if (editMode || openingHref) return;
@@ -111,6 +115,7 @@ export function BentoGrid() {
   return (
     <section aria-label="Navigation portfolio Bento" className="relative">
       <div className="mb-4 flex justify-end gap-2">
+        <LanguageToggle />
         <ThemeToggle />
         <button
           type="button"

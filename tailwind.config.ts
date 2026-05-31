@@ -20,7 +20,7 @@ const config: Config = {
         line: "rgb(var(--color-line) / <alpha-value>)"
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"]
+        sans: ["system-ui", "sans-serif"]
       },
       boxShadow: {
         glow: "var(--glow)"

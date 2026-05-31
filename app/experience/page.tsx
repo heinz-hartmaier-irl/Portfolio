@@ -1,18 +1,14 @@
 import { PageShell } from "@/components/page-shell";
-import { timeline } from "@/lib/content";
+import { siteContent } from "@/lib/site-content";
+import { getServerLocale } from "@/lib/server-locale";
 
-export const metadata = {
-  title: "Expériences",
-  description: "Stages, expériences et projets présentés sous forme de timeline."
-};
+export default async function ExperiencePage() {
+  const locale = await getServerLocale();
+  const content = siteContent[locale].pages.experience;
+  const timeline = siteContent[locale].timeline;
 
-export default function ExperiencePage() {
   return (
-    <PageShell
-      eyebrow="Expériences"
-      title="Parcours professionnel et projets marquants."
-      description="Une timeline pour présenter les stages, missions, responsabilités et résultats."
-    >
+    <PageShell eyebrow={content.eyebrow} title={content.heading} description={content.description}>
       <div className="relative space-y-4 before:absolute before:left-4 before:top-2 before:h-full before:w-px before:bg-line/30">
         {timeline.map((item) => (
           <article key={`${item.date}-${item.title}`} className="relative pl-12">
