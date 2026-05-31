@@ -1,0 +1,11 @@
+node_modules
+.npm-cache
+.tmp
+.next
+out
+dist
+.env
+.env*.local
+*.log
+public/cv.pdf
+public/music/*.mp3

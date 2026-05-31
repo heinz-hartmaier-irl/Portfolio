@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --color-ink: 250 246 237;
+  --color-navy: 255 255 255;
+  --color-rose: 205 61 111;
+  --color-orange: 226 121 64;
+  --color-gold: 193 143 35;
+  --color-paper: 255 252 246;
+  --color-text: 27 24 46;
+  --color-muted: 94 85 119;
+  --color-line: 229 216 198;
+  --glow: 0 20px 80px rgba(205, 61, 111, 0.15);
+  background: rgb(var(--color-ink));
+}
+
+.dark {
+  color-scheme: dark;
+  --color-ink: 1 6 38;
+  --color-navy: 20 18 89;
+  --color-rose: 217 65 121;
+  --color-orange: 242 167 102;
+  --color-gold: 242 205 92;
+  --color-paper: 20 18 89;
+  --color-text: 255 247 214;
+  --color-muted: 196 190 218;
+  --color-line: 255 255 255;
+  --glow: 0 20px 80px rgba(217, 65, 121, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: rgb(var(--color-ink));
+  color: rgb(var(--color-text));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgb(var(--color-gold));
+  color: rgb(var(--color-ink));
+}
+
+.focus-ring {
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold;
+}
+
+.glass-border {
+  border: 1px solid rgb(var(--color-line) / 0.18);
+  background: linear-gradient(145deg, rgb(var(--color-navy) / 0.92), rgb(var(--color-navy) / 0.7));
+}
+
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    linear-gradient(115deg, transparent 0 38%, rgb(var(--color-gold) / 0.08) 38% 39%, transparent 39% 100%),
+    radial-gradient(circle at 18% 14%, rgb(var(--color-rose) / 0.18), transparent 32rem),
+    radial-gradient(circle at 84% 12%, rgb(var(--color-orange) / 0.16), transparent 34rem),
+    radial-gradient(circle at 50% 100%, rgb(var(--color-gold) / 0.12), transparent 36rem),
+    rgb(var(--color-ink));
+}
+
+.animated-bg::before,
+.animated-bg::after {
+  content: "";
+  position: absolute;
+  width: 46rem;
+  height: 46rem;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: 0.35;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.animated-bg::before {
+  left: -12rem;
+  top: 8rem;
+  background: rgb(var(--color-rose) / 0.28);
+}
+
+.animated-bg::after {
+  right: -10rem;
+  bottom: -14rem;
+  background: rgb(var(--color-orange) / 0.28);
+  animation-duration: 23s;
+}
+
+.animated-bg {
+  animation: background-shift 28s ease-in-out infinite alternate;
+}
+
+.animated-bg::before {
+  box-shadow:
+    10rem 8rem 0 -8rem rgb(var(--color-gold) / 0.32),
+    22rem -2rem 0 -10rem rgb(var(--color-orange) / 0.28);
+}
+
+.animated-bg::after {
+  box-shadow:
+    -14rem -10rem 0 -9rem rgb(var(--color-rose) / 0.26),
+    -28rem 4rem 0 -11rem rgb(var(--color-gold) / 0.24);
+}
+
+.animated-bg > .pattern-layer {
+  position: absolute;
+  inset: -20%;
+  opacity: 0.32;
+  background-image:
+    linear-gradient(90deg, rgb(var(--color-line) / 0.18) 1px, transparent 1px),
+    linear-gradient(0deg, rgb(var(--color-line) / 0.14) 1px, transparent 1px),
+    radial-gradient(circle, rgb(var(--color-rose) / 0.22) 1px, transparent 1.5px);
+  background-size: 5.5rem 5.5rem, 5.5rem 5.5rem, 2.1rem 2.1rem;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+  animation: pattern-drift 34s linear infinite;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(4rem, -3rem, 0) scale(1.08);
+  }
+}
+
+@keyframes pattern-drift {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(-6rem, 4rem, 0) rotate(2deg);
+  }
+}
+
+@keyframes background-shift {
+  from {
+    filter: hue-rotate(0deg) saturate(1);
+  }
+
+  to {
+    filter: hue-rotate(-8deg) saturate(1.08);
+  }
+}
+
+@keyframes bento-shake {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate3d(-1px, 1px, 0) rotate(-0.35deg);
+  }
+
+  50% {
+    transform: translate3d(1px, -1px, 0) rotate(0.35deg);
+  }
+
+  75% {
+    transform: translate3d(1px, 1px, 0) rotate(-0.2deg);
+  }
+}
+
+.bento-edit-card {
+  animation: bento-shake 1.7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-bg,
+  .animated-bg::before,
+  .animated-bg::after,
+  .animated-bg > .pattern-layer,
+  .bento-edit-card {
+    animation: none;
+  }
+}

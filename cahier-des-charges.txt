@@ -1,0 +1,68 @@
+Cahier des charges - Portfolio interactif personnel Bento Grid
+
+1. Objectif
+Créer un portfolio web personnel interactif pour présenter le profil, les compétences, les expériences, la formation, le CV, les projets réalisés et les moyens de contact.
+
+2. Public cible
+Recruteurs, entreprises, responsables pédagogiques, tuteurs de stage, clients potentiels, développeurs et collaborateurs.
+
+3. Technologies imposées
+- Next.js
+- TypeScript
+- TailwindCSS
+- Framer Motion
+- Déploiement prévu sur Vercel
+- Versionning via GitHub
+
+4. Page d'accueil
+- Bento Grid interactif servant de hub de navigation.
+- Cartes cliquables vers les pages dédiées.
+- Cartes de tailles variées.
+- Grille compacte, sans trou, en toute circonstance en affichage normal.
+- Placement différent à chaque rechargement via des templates compacts.
+- Mode de composition permettant de déplacer les cartes.
+- Titres uniquement dans les cartes de l'accueil.
+- Pas de header sur la page d'accueil.
+
+5. Pages obligatoires
+- /about : présentation personnelle, parcours, objectifs professionnels.
+- /projects : liste des projets.
+- /projects/[slug] : détail d'un projet avec description, technologies, difficultés, résultats, lien GitHub et démonstration éventuelle.
+- /skills : compétences front-end, back-end, bases de données, outils et domaines associés.
+- /experience : expériences et stages sous forme de timeline.
+- /education : diplômes, formations et apprentissages.
+- /cv : consultation et téléchargement du CV PDF.
+- /contact : formulaire, email, GitHub et LinkedIn.
+
+6. Design
+- Interface moderne, minimale et immersive.
+- Inspiration Bento Grid.
+- Animations sobres : hover, apparition progressive, transitions et micro-interactions.
+- Fond animé léger.
+- Thème clair par défaut.
+- Mode sombre disponible avec la palette initiale :
+  - Jaune clair : #F2CD5C
+  - Orange doux : #F2A766
+  - Rose vif : #D94179
+  - Bleu profond : #141259
+  - Bleu très foncé : #010626
+- Switch clair/sombre accessible.
+
+7. Fonctionnalités complémentaires
+- Lecteur audio intégré.
+- Lecteur audio déplaçable par l'utilisateur.
+- Musiques locales prévues dans public/music.
+- Projet Unity intégrable via une build WebGL placée dans public/unity/jeu-unity.
+
+8. Responsive et performance
+- Compatible mobile, tablette et ordinateur.
+- Chargement rapide.
+- Animations limitées pour préserver les performances.
+- Images optimisées.
+- Métadonnées SEO.
+
+9. Maintenance
+- Contenu centralisé dans lib/content.ts.
+- Ajout de projets facilité.
+- Architecture App Router claire.
+- Documentation d'installation dans README.md.

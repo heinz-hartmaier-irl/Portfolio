@@ -1,0 +1,9 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="#010626"/>
+  <circle cx="600" cy="350" r="230" fill="#141259"/>
+  <path d="M601 120L807 239V462L601 581L394 462V239L601 120Z" fill="#D94179" fill-opacity=".82"/>
+  <path d="M601 205L733 281V428L601 505L468 428V281L601 205Z" fill="#010626"/>
+  <path d="M600 248L696 304V415L600 470L504 415V304L600 248Z" fill="#F2CD5C"/>
+  <path d="M600 248V470M504 304L696 415M696 304L504 415" stroke="#010626" stroke-opacity=".45" stroke-width="14"/>
+  <text x="600" y="635" text-anchor="middle" fill="#F2A766" font-family="Arial, sans-serif" font-size="46" font-weight="700">UNITY WEBGL</text>
+</svg>
