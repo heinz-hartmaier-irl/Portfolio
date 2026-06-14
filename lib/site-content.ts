@@ -262,7 +262,22 @@ export const siteContent = {
         title: "Expériences",
         eyebrow: "Expériences",
         heading: "Parcours professionnel et projets marquants.",
-        description: "Une timeline pour présenter les stages, missions, responsabilités et résultats."
+        description: "Une timeline pour présenter les stages, missions, responsabilités et résultats.",
+        internshipEyebrow: "Stage",
+        internshipHeading: "Stage développement",
+        internshipDescription:
+          "Mission sur une carte interactive avec filtres web et rendu cartographique pour explorer des données locales.",
+        internshipHighlightsTitle: "Compétences valorisées",
+        internshipHighlights: [
+          "Développement web front-end",
+          "Intégration de cartes interactives",
+          "Création de filtres dynamiques",
+          "Lecture de données géographiques"
+        ],
+        evaluationTitle: "Évaluation",
+        evaluationDescription: "Retour sur le travail, la qualité et les points améliorables.",
+        evaluationTrigger: "Voir l’évaluation",
+        evaluationEmptyState: "Aucune évaluation disponible pour le moment."
       },
       skills: {
         title: "Compétences",
@@ -280,6 +295,9 @@ export const siteContent = {
         starredTitle: "Étoiles GitHub",
         inspirationTitle: "Inspirations GitHub",
         inspirationBody: "Dépôts étoilés hors de ton espace personnel.",
+        graphicGalleryLabel: "Galerie graphique",
+        graphicGalleryTitle: "Créations visuelles et direction artistique",
+        graphicGalleryBody: "Découvre une sélection de travaux graphiques réalisés en affiches, tourisme, identités visuelles et illustrations.",
         categories: {
           web: "Web",
           audiovisuel: "Audio-visuel",
@@ -364,7 +382,22 @@ export const siteContent = {
         title: "Experience",
         eyebrow: "Experience",
         heading: "Professional background and notable projects.",
-        description: "A timeline for internships, tasks, responsibilities and outcomes."
+        description: "A timeline for internships, tasks, responsibilities and outcomes.",
+        internshipEyebrow: "Internship",
+        internshipHeading: "Development internship",
+        internshipDescription:
+          "Work on an interactive map with filters and geographic data visualization for local content exploration.",
+        internshipHighlightsTitle: "Highlighted skills",
+        internshipHighlights: [
+          "Front-end web development",
+          "Interactive map integration",
+          "Dynamic filter design",
+          "Geographic data handling"
+        ],
+        evaluationTitle: "Evaluation",
+        evaluationDescription: "Reflection on work quality, outcomes and improvement opportunities.",
+        evaluationTrigger: "View evaluation",
+        evaluationEmptyState: "No evaluation available yet."
       },
       skills: {
         title: "Skills",
@@ -382,6 +415,9 @@ export const siteContent = {
         starredTitle: "GitHub stars",
         inspirationTitle: "GitHub inspirations",
         inspirationBody: "Starred repositories outside your personal space.",
+        graphicGalleryLabel: "Graphic gallery",
+        graphicGalleryTitle: "Visual creations and art direction",
+        graphicGalleryBody: "Discover a selection of graphic work in posters, tourism, visual identities and illustrations.",
         categories: {
           web: "Web",
           audiovisuel: "Audiovisual",
