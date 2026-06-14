@@ -5,6 +5,7 @@ import {
   Download,
   GraduationCap,
   Mail,
+  Palette,
   PanelsTopLeft,
   UserRound
 } from "lucide-react";
@@ -34,6 +35,7 @@ const icons = {
   GraduationCap,
   Download,
   Mail,
+  Palette,
   BookOpen
 } satisfies Record<string, LucideIcon>;
 
@@ -127,25 +129,6 @@ const enProjects: PortfolioProject[] = [
     category: "web" as ProjectCategory
   },
   {
-    slug: "jeu-unity",
-    title: "Integrated Unity game",
-    summary: "Placeholder for a Unity WebGL build inside the portfolio.",
-    description:
-      "The project page documents the game and prepares a Unity WebGL build exported to `public/unity/jeu-unity`.",
-    technologies: ["Unity", "C#", "WebGL"],
-    challenges: [
-      "Optimize WebGL build weight",
-      "Handle loading in a responsive page",
-      "Document gameplay, constraints and outcomes"
-    ],
-    results: ["Dedicated page ready", "WebGL integration slot", "Recruiter-friendly presentation"],
-    github: "https://github.com/",
-    demo: "/projects/jeu-unity",
-    image: "/unity-placeholder.svg",
-    unity: true,
-    category: "audiovisuel" as ProjectCategory
-  },
-  {
     slug: "cartographie-web",
     title: "Web mapping prototype",
     summary: "A geographic data visualization application.",
@@ -215,6 +198,7 @@ export const siteContent = {
     navigation: [
       { href: "/about", label: "À propos", icon: icons.UserRound },
       { href: "/projects", label: "Projets", icon: icons.PanelsTopLeft },
+      { href: "/creations-graphiques", label: "Créations", icon: icons.Palette },
       { href: "/skills", label: "Compétences", icon: icons.Code2 },
       { href: "/experience", label: "Expériences", icon: icons.BriefcaseBusiness },
       { href: "/education", label: "Formation", icon: icons.BookOpen },
@@ -290,15 +274,26 @@ export const siteContent = {
         description: "Les compétences sont organisées par familles et reliées aux projets qui les utilisent.",
         projectsTitle: "Compétences reliées aux projets"
       },
+      creationsGraphiques: {
+        title: "Créations graphiques",
+        eyebrow: "Créations",
+        heading: "Une galerie en bento pour les compositions visuelles et les tests de mise en page.",
+        description:
+          "Le haut de page mélange quelques visuels de façon aléatoire, puis le catalogue complet apparaît plus bas."
+      },
       projects: {
         title: "Projets",
         eyebrow: "Réalisations",
         heading: "Mes projets, classés par domaine et enrichis avec mes étoiles GitHub.",
         description:
-          "La page sépare les projets web, audio-visuels et graphiques, puis rassemble les dépôts GitHub publics que tu as marqués d'une étoile.",
+          "La page regroupe ici les projets web et audio-visuels. Les créations graphiques ont maintenant leur propre galerie dédiée.",
         starredTitle: "Étoiles GitHub",
         inspirationTitle: "Inspirations GitHub",
         inspirationBody: "Dépôts étoilés hors de ton espace personnel.",
+        graphicGalleryLabel: "Créations graphiques",
+        graphicGalleryTitle: "Les visuels vivent désormais dans une page dédiée.",
+        graphicGalleryBody:
+          "Utilise ce lien pour accéder directement à la galerie en bento des compositions, affiches et autres prototypes.",
         categories: {
           web: "Web",
           audiovisuel: "Audio-visuel",
@@ -317,6 +312,7 @@ export const siteContent = {
     navigation: [
       { href: "/about", label: "About", icon: icons.UserRound },
       { href: "/projects", label: "Projects", icon: icons.PanelsTopLeft },
+      { href: "/creations-graphiques", label: "Graphics", icon: icons.Palette },
       { href: "/skills", label: "Skills", icon: icons.Code2 },
       { href: "/experience", label: "Experience", icon: icons.BriefcaseBusiness },
       { href: "/education", label: "Education", icon: icons.BookOpen },
@@ -392,15 +388,26 @@ export const siteContent = {
         description: "Skills are grouped by families and linked to the projects that use them.",
         projectsTitle: "Skills linked to projects"
       },
+      creationsGraphiques: {
+        title: "Graphic creations",
+        eyebrow: "Creative work",
+        heading: "A bento-style gallery for visual compositions and layout experiments.",
+        description:
+          "The top section shuffles a handful of creations each time, then the full catalogue appears below for a clear overview."
+      },
       projects: {
         title: "Projects",
         eyebrow: "Work",
         heading: "My projects, organized by domain and enriched with my GitHub stars.",
         description:
-          "The page separates web, audiovisual and graphic work, then highlights the public GitHub repositories you have starred.",
+          "The page groups web and audiovisual work here. Graphic creations now live in their own dedicated gallery.",
         starredTitle: "GitHub stars",
         inspirationTitle: "GitHub inspirations",
         inspirationBody: "Starred repositories outside your personal space.",
+        graphicGalleryLabel: "Graphic creations",
+        graphicGalleryTitle: "Visual work now lives in a dedicated page.",
+        graphicGalleryBody:
+          "Use this section to jump straight to the bento gallery for layouts, posters and other compositions.",
         categories: {
           web: "Web",
           audiovisuel: "Audiovisual",
@@ -419,4 +426,3 @@ export const siteContent = {
 export function getSiteContent(locale: Locale) {
   return siteContent[locale];
 }
-

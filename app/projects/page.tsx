@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Projects",
-  description: "Catalog of portfolio projects, grouped by domain and enriched with public GitHub stars."
+  description: "Catalog of portfolio projects focused on web and audiovisual work, plus public GitHub stars."
 };
 
 function EmptyState({ label, locale }: { label: string; locale: "fr" | "en" }) {
@@ -148,6 +148,7 @@ export default async function ProjectsPage() {
       content.projects.filter((project) => project.category === category)
     ])
   ) as Record<ProjectCategory, (typeof content.projects)[number][]>;
+  const visibleCategories = projectCategoryOrder.filter((category) => localByCategory[category].length > 0);
 
   const starredWebRepos = starredRepos.filter(
     (repo) => repo.owner.login.toLowerCase() === GITHUB_USERNAME && classifyStarredRepo(repo) === "web"
@@ -160,7 +161,7 @@ export default async function ProjectsPage() {
       description={content.pages.projects.description}
     >
       <div className="space-y-10">
-        {projectCategoryOrder.map((category) => (
+        {visibleCategories.map((category) => (
           <section key={category} className="space-y-5">
             <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
               <div>
@@ -195,6 +196,29 @@ export default async function ProjectsPage() {
             </div>
           </section>
         ))}
+
+        <section className="glass-border rounded-lg border border-line/30 bg-navy/45 p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">
+                {content.pages.projects.graphicGalleryLabel}
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold text-text">
+                {content.pages.projects.graphicGalleryTitle}
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-muted">
+                {content.pages.projects.graphicGalleryBody}
+              </p>
+            </div>
+            <Link
+              href="/creations-graphiques"
+              className="focus-ring inline-flex items-center gap-2 rounded-md bg-orange px-4 py-2 text-sm font-medium text-ink transition hover:bg-gold"
+            >
+              {locale === "fr" ? "Ouvrir la galerie" : "Open gallery"}
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
 
         <section className="space-y-4">
           <div>

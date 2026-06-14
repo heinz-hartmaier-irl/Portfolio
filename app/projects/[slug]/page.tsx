@@ -87,25 +87,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ))}
           </ul>
         </SectionCard>
-        {project.unity ? (
-          <SectionCard className="lg:col-span-2">
-            <h2 className="text-2xl font-semibold text-text">
-              {locale === "fr" ? "Intégration Unity WebGL" : "Unity WebGL integration"}
-            </h2>
-            <p className="mt-4 leading-7 text-muted">
-              {locale === "fr"
-                ? "Pour intégrer le jeu, exporte la build Unity en WebGL puis place les fichiers dans "
-                : "To integrate the game, export the Unity build as WebGL and place the files in "}
-              <span className="text-gold">public/unity/jeu-unity</span>.
-              {locale === "fr"
-                ? " Tu pourras ensuite remplacer ce bloc par le loader Unity généré ou une iframe locale."
-                : " You can then replace this block with the generated Unity loader or a local iframe."}
-            </p>
-            <div className="mt-5 grid min-h-64 place-items-center rounded-lg border border-dashed border-orange/[0.45] bg-navy/50 text-center text-muted">
-              {locale === "fr" ? "Zone prête pour la build Unity WebGL" : "Area ready for the Unity WebGL build"}
-            </div>
-          </SectionCard>
-        ) : null}
       </div>
     </PageShell>
   );

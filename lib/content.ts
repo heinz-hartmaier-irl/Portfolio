@@ -40,7 +40,7 @@ export type PortfolioProject = {
 
 export const profile = {
   name: "Heinz Hartmaier",
-  role: "Développeur informatique",
+  role: "Développeur Web ",
   baseline: "Interfaces web modernes, applications interactives et expériences numériques utiles.",
   email: "heinzhartmaier.pro@gmail.com",
   github: "https://github.com/heinz-hartmaier-irl",
@@ -61,7 +61,7 @@ export const bentoItems = [
   {
     title: "Projets",
     href: "/projects",
-    description: "Réalisations web, applicatives et jeu Unity.",
+    description: "Réalisations web, applicatives et visuelles.",
     size: "lg" as BentoSize,
     icon: PanelsTopLeft,
     accent: "gold" as BentoAccent
@@ -128,38 +128,19 @@ export const projects: PortfolioProject[] = [
     category: "web" as ProjectCategory
   },
   {
-    slug: "jeu-unity",
-    title: "Jeu Unity intégré",
-    summary: "Emplacement prévu pour publier une build WebGL Unity dans le portfolio.",
-    description:
-      "La page projet documente le jeu et prévoit l'intégration d'une build Unity WebGL exportée dans `public/unity/jeu-unity`.",
-    technologies: ["Unity", "C#", "WebGL"],
-    challenges: [
-      "Optimiser le poids de la build WebGL",
-      "Gérer le chargement dans une page responsive",
-      "Documenter gameplay, difficultés et résultats"
-    ],
-    results: ["Page dédiée prête", "Zone d'intégration WebGL", "Présentation adaptée aux recruteurs"],
-    github: "https://github.com/",
-    demo: "/projects/jeu-unity",
-    image: "/unity-placeholder.svg",
-    unity: true,
-    category: "audiovisuel" as ProjectCategory
-  },
-  {
     slug: "cartographie-web",
-    title: "Prototype cartographie web",
+    title: "Carte interactive de la Viti de Beaune",
     summary: "Application de visualisation de données géographiques.",
     description:
-      "Prototype orienté données, filtres et affichage cartographique pour explorer des informations localisées.",
-    technologies: ["React", "Leaflet", "API REST", "PostgreSQL"],
+      "Prototype orienté données, filtres et affichage cartographique pour explorer des informations localisées, dans le cadre de journée porte ouverte.",
+    technologies: ["JavaScript", "Leaflet", "Joomla"],
     challenges: [
       "Structurer les données géographiques",
       "Créer des filtres rapides",
       "Améliorer la lisibilité mobile"
     ],
     results: ["Carte interactive", "Filtres dynamiques", "Interface utilisable sur tablette"],
-    github: "https://github.com/",
+    github: "https://lavitibeaune.com/mobile",
     demo: "#",
     image: "/map-placeholder.svg",
     category: "web" as ProjectCategory
@@ -200,13 +181,13 @@ export const timeline = [
     date: "2025",
     title: "Stage développement",
     type: "Expérience",
-    description: "Participation à la conception d'interfaces et à l'amélioration de fonctionnalités web."
+    description: "Participation à la conception d'interfaces d'une application web."
   },
   {
-    date: "2024",
-    title: "Formation développement informatique",
+    date: "2023",
+    title: "BUT Métier du Multimédia et de l'Internet",
     type: "Formation",
-    description: "Apprentissage du développement web, des bases de données, de Git et des bonnes pratiques."
+    description: "Apprentissage du développement web, de la création numérique et de la communication."
   }
 ];
 
