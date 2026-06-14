@@ -5,7 +5,6 @@ import {
   Download,
   GraduationCap,
   Mail,
-  Palette,
   PanelsTopLeft,
   UserRound
 } from "lucide-react";
@@ -35,13 +34,12 @@ const icons = {
   GraduationCap,
   Download,
   Mail,
-  Palette,
   BookOpen
 } satisfies Record<string, LucideIcon>;
 
 const enProfile = {
   name: "Heinz Hartmaier",
-  role: "Software developer",
+  role: "Web developer",
   baseline: "Modern web interfaces, interactive applications and useful digital experiences.",
   email: "heinzhartmaier.pro@gmail.com",
   github: "https://github.com/heinz-hartmaier-irl",
@@ -185,10 +183,10 @@ const enTimeline = [
     description: "Contributing to interface design and web feature improvements."
   },
   {
-    date: "2024",
-    title: "Computer development training",
+    date: "2023",
+    title: "Bachelor's degree in Multimedia and Internet Professions",
     type: "Education",
-    description: "Learning web development, databases, Git and good practices."
+    description: "Learning web development, digital creation and communication."
   }
 ];
 
@@ -198,7 +196,6 @@ export const siteContent = {
     navigation: [
       { href: "/about", label: "À propos", icon: icons.UserRound },
       { href: "/projects", label: "Projets", icon: icons.PanelsTopLeft },
-      { href: "/creations-graphiques", label: "Créations", icon: icons.Palette },
       { href: "/skills", label: "Compétences", icon: icons.Code2 },
       { href: "/experience", label: "Expériences", icon: icons.BriefcaseBusiness },
       { href: "/education", label: "Formation", icon: icons.BookOpen },
@@ -218,15 +215,15 @@ export const siteContent = {
       about: {
         title: "À propos",
         eyebrow: "Présentation",
-        heading: "Un profil orienté interfaces utiles et développement moderne.",
+        heading: "Un développeur qui découvre le monde.",
         description:
           "Cette page sert de base éditable pour présenter le parcours, les méthodes de travail et les objectifs professionnels.",
         sectionOneTitle: "Qui suis-je ?",
         sectionOneText:
-          "Je suis {name}, développeur informatique avec un intérêt marqué pour les interfaces web, les expériences interactives et les applications maintenables. Mon objectif est de transformer des besoins concrets en outils clairs, rapides et agréables à utiliser.",
+          "Je suis {name}, développeur web qui a débuté dans le développement d'applications web interactives il y a quelques années et qui cherche à trouver l'équilibre entre créativité et fonctionnalité.",
         sectionTwoTitle: "Objectifs",
         sectionTwoText:
-          "Consolider mes compétences en développement web moderne, rejoindre des projets exigeants et continuer à progresser sur l'architecture, la performance, l'accessibilité et la qualité des interfaces.",
+          "Consolider mes compétences en développement web moderne, rejoindre des projets intéressants et continuer à progresser sur l'architecture, la performance, l'accessibilité et la qualité des interfaces.",
         sectionThreeTitle: "Parcours",
         sectionThreeText:
           "Le portfolio est structuré pour être utilisé pendant des candidatures ou entretiens : projets détaillés, difficultés rencontrées, technologies utilisées, résultats obtenus et liens vers les réalisations. Les textes peuvent être personnalisés dans lib/content.ts."
@@ -244,7 +241,7 @@ export const siteContent = {
         title: "CV",
         eyebrow: "CV",
         heading: "CV consultable et téléchargeable.",
-        description: "Place ton fichier PDF dans `public/cv.pdf` pour activer la consultation complète.",
+        description: "Mon cv le plus récent.",
         titleCard: "Curriculum vitae",
         body: "Le bouton pointe vers le fichier attendu : {path}.",
         download: "Télécharger",
@@ -257,8 +254,8 @@ export const siteContent = {
         description: "Une page dédiée au parcours scolaire, aux modules techniques et aux certifications.",
         moduleTitle: "Modules clés",
         skillsTitle: "Compétences travaillées",
-        firstTitle: "Formation développement informatique",
-        firstText: "Développement web, algorithmique, bases de données, gestion de projet, Git et mise en production d'applications.",
+        firstTitle: "BUT MMI - Spécialité développement web",
+        firstText: "Développement web, bases de données, gestion de projet, Git et mise en production d'applications.",
         secondText: "Interfaces responsive, API, SQL, sécurité de base, accessibilité, documentation et présentation de projet."
       },
       experience: {
@@ -274,26 +271,15 @@ export const siteContent = {
         description: "Les compétences sont organisées par familles et reliées aux projets qui les utilisent.",
         projectsTitle: "Compétences reliées aux projets"
       },
-      creationsGraphiques: {
-        title: "Créations graphiques",
-        eyebrow: "Créations",
-        heading: "Une galerie en bento pour les compositions visuelles et les tests de mise en page.",
-        description:
-          "Le haut de page mélange quelques visuels de façon aléatoire, puis le catalogue complet apparaît plus bas."
-      },
       projects: {
         title: "Projets",
         eyebrow: "Réalisations",
         heading: "Mes projets, classés par domaine et enrichis avec mes étoiles GitHub.",
         description:
-          "La page regroupe ici les projets web et audio-visuels. Les créations graphiques ont maintenant leur propre galerie dédiée.",
+          "La page sépare les projets web, audio-visuels et graphiques, puis rassemble les dépôts GitHub publics que tu as marqués d'une étoile.",
         starredTitle: "Étoiles GitHub",
         inspirationTitle: "Inspirations GitHub",
         inspirationBody: "Dépôts étoilés hors de ton espace personnel.",
-        graphicGalleryLabel: "Créations graphiques",
-        graphicGalleryTitle: "Les visuels vivent désormais dans une page dédiée.",
-        graphicGalleryBody:
-          "Utilise ce lien pour accéder directement à la galerie en bento des compositions, affiches et autres prototypes.",
         categories: {
           web: "Web",
           audiovisuel: "Audio-visuel",
@@ -312,7 +298,6 @@ export const siteContent = {
     navigation: [
       { href: "/about", label: "About", icon: icons.UserRound },
       { href: "/projects", label: "Projects", icon: icons.PanelsTopLeft },
-      { href: "/creations-graphiques", label: "Graphics", icon: icons.Palette },
       { href: "/skills", label: "Skills", icon: icons.Code2 },
       { href: "/experience", label: "Experience", icon: icons.BriefcaseBusiness },
       { href: "/education", label: "Education", icon: icons.BookOpen },
@@ -332,18 +317,18 @@ export const siteContent = {
       about: {
         title: "About",
         eyebrow: "Profile",
-        heading: "A profile focused on useful interfaces and modern development.",
+        heading: "A developer discovering the world.",
         description:
           "This page is an editable base for presenting background, working methods and professional goals.",
         sectionOneTitle: "Who am I?",
         sectionOneText:
-          "I am {name}, a software developer with a strong interest in web interfaces, interactive experiences and maintainable applications. My goal is to turn real needs into clear, fast and pleasant tools.",
+          "I am {name}, a web developer who began building interactive web applications a few years ago and is looking for the balance between creativity and functionality.",
         sectionTwoTitle: "Goals",
         sectionTwoText:
           "Strengthen my modern web development skills, join demanding projects and keep improving architecture, performance, accessibility and interface quality.",
         sectionThreeTitle: "Background",
         sectionThreeText:
-          "The portfolio is structured to be used during applications or interviews: detailed projects, challenges, technologies, outcomes and links to the work. The text can be customized in lib/content.ts."
+          "The portfolio is structured to be used during applications or interviews: detailed projects, challenges, technologies, outcomes and links to the work. The texts can be customized in lib/content.ts."
       },
       contact: {
         title: "Contact",
@@ -358,7 +343,7 @@ export const siteContent = {
         title: "CV",
         eyebrow: "CV",
         heading: "View and download the CV.",
-        description: "Place your PDF file in `public/cv.pdf` to enable the full preview.",
+        description: "My most recent CV.",
         titleCard: "Curriculum vitae",
         body: "The button points to the expected file: {path}.",
         download: "Download",
@@ -371,8 +356,8 @@ export const siteContent = {
         description: "A page dedicated to academic background, technical modules and certifications.",
         moduleTitle: "Key modules",
         skillsTitle: "Skills practiced",
-        firstTitle: "Computer development training",
-        firstText: "Web development, algorithms, databases, project management, Git and application deployment.",
+        firstTitle: "Bachelor's degree in Multimedia and Internet Professions",
+        firstText: "Web development, databases, project management, Git and deployment of applications.",
         secondText: "Responsive interfaces, APIs, SQL, basic security, accessibility, documentation and project presentation."
       },
       experience: {
@@ -388,26 +373,15 @@ export const siteContent = {
         description: "Skills are grouped by families and linked to the projects that use them.",
         projectsTitle: "Skills linked to projects"
       },
-      creationsGraphiques: {
-        title: "Graphic creations",
-        eyebrow: "Creative work",
-        heading: "A bento-style gallery for visual compositions and layout experiments.",
-        description:
-          "The top section shuffles a handful of creations each time, then the full catalogue appears below for a clear overview."
-      },
       projects: {
         title: "Projects",
         eyebrow: "Work",
         heading: "My projects, organized by domain and enriched with my GitHub stars.",
         description:
-          "The page groups web and audiovisual work here. Graphic creations now live in their own dedicated gallery.",
+          "The page separates web, audiovisual and graphic work, then highlights the public GitHub repositories you have starred.",
         starredTitle: "GitHub stars",
         inspirationTitle: "GitHub inspirations",
         inspirationBody: "Starred repositories outside your personal space.",
-        graphicGalleryLabel: "Graphic creations",
-        graphicGalleryTitle: "Visual work now lives in a dedicated page.",
-        graphicGalleryBody:
-          "Use this section to jump straight to the bento gallery for layouts, posters and other compositions.",
         categories: {
           web: "Web",
           audiovisuel: "Audiovisual",
@@ -426,3 +400,4 @@ export const siteContent = {
 export function getSiteContent(locale: Locale) {
   return siteContent[locale];
 }
+

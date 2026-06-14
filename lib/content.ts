@@ -181,7 +181,7 @@ export const timeline = [
     date: "2025",
     title: "Stage développement",
     type: "Expérience",
-    description: "Participation à la conception d'interfaces d'une application web."
+    description: "Participation à un projet de carte interactive et à la conception d'interfaces d'une application web."
   },
   {
     date: "2023",
