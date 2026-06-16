@@ -42,6 +42,10 @@ export type PortfolioProject = {
     title: string;
     src: string;
   }[];
+  evaluationGrid?: {
+    title: string;
+    src: string;
+  }[];
   unity?: boolean;
   category: ProjectCategory;
 };
