@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Gamepad2, ScreenShare, CheckCircle2 } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
+import { ImageGallery } from "@/components/image-gallery";
 import { SectionCard } from "@/components/section-card";
 import { siteContent } from "@/lib/site-content";
 import { getServerLocale } from "@/lib/server-locale";
@@ -14,6 +14,9 @@ export default async function ExperiencePage() {
     { src: "/assets/projects/carte/figma.png", alt: locale === "fr" ? "Maquette Figma de la carte interactive" : "Figma mockup of the interactive map" },
     { src: "/assets/projects/carte/carte_phone.png", alt: locale === "fr" ? "Carte interactive sur mobile" : "Interactive map on mobile" },
     { src: "/assets/projects/carte/hud.png", alt: locale === "fr" ? "Interface et filtres de la carte" : "Map interface and filters" }
+  ];
+  const unityScreenshots = [
+    { src: "/assets/projects/unity/screenshot.png", alt: locale === "fr" ? "Capture du jeu Unity" : "Unity game screenshot" }
   ];
 
   return (
@@ -56,14 +59,11 @@ export default async function ExperiencePage() {
                     {locale === "fr" ? "Stage développement" : "Development internship"}
                   </div>
                   <div className="mt-4 grid gap-3">
-                    {mapScreenshots.map((item) => (
-                      <div key={item.src} className="overflow-hidden rounded-lg border border-line/25 bg-paper/55">
-                        <div className="relative aspect-[16/10]">
-                          <Image src={item.src} alt={item.alt} fill className="object-cover" />
-                        </div>
-                        <p className="border-t border-line/20 px-3 py-2 text-xs text-muted">{item.alt}</p>
-                      </div>
-                    ))}
+                    <ImageGallery
+                      title={locale === "fr" ? "Galerie stage" : "Internship gallery"}
+                      images={mapScreenshots}
+                      locale={locale}
+                    />
                   </div>
                 </div>
 
@@ -141,20 +141,12 @@ export default async function ExperiencePage() {
                   <Gamepad2 size={16} />
                   {locale === "fr" ? "Aperçu du jeu" : "Game preview"}
                 </div>
-                <div className="mt-4 overflow-hidden rounded-lg border border-line/25 bg-paper/55">
-                  <div className="relative aspect-[16/10]">
-                    <Image
-                      src="/assets/projects/unity/screenshot.png"
-                      alt={locale === "fr" ? "Capture d'écran du jeu Unity" : "Unity game screenshot"}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <p className="border-t border-line/20 px-3 py-2 text-xs text-muted">
-                    {locale === "fr"
-                      ? "Projet de cours avec prototype jouable et interface intégrée."
-                      : "Course project with a playable prototype and integrated UI."}
-                  </p>
+                <div className="mt-4">
+                  <ImageGallery
+                    title={locale === "fr" ? "Galerie Unity" : "Unity gallery"}
+                    images={unityScreenshots}
+                    locale={locale}
+                  />
                 </div>
               </div>
 

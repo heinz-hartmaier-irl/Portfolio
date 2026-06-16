@@ -156,7 +156,7 @@ const enProjects: PortfolioProject[] = [
         alt: "Map interface and filters"
       }
     ],
-    evaluationGrid: [
+    supportingDocuments: [
       { title: "Understand", src: "/assets/evaluation/comprendre.png" },
       { title: "Design", src: "/assets/evaluation/concevoir.png" },
       { title: "Develop", src: "/assets/evaluation/developper.png" }
@@ -185,7 +185,7 @@ const enProjects: PortfolioProject[] = [
         alt: "Unity game screenshot"
       }
     ],
-    evaluationGrid: [
+    supportingDocuments: [
       { title: "Express", src: "/assets/evaluation/exprimer.png" },
       { title: "Undertake", src: "/assets/evaluation/entreprendre.png" }
     ],

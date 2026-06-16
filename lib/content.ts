@@ -38,7 +38,7 @@ export type PortfolioProject = {
     src: string;
     alt: string;
   }[];
-  evaluationGrid?: {
+  supportingDocuments?: {
     title: string;
     src: string;
   }[];
@@ -165,7 +165,7 @@ export const projects: PortfolioProject[] = [
         alt: "Interface et filtres de la carte"
       }
     ],
-    evaluationGrid: [
+    supportingDocuments: [
       { title: "Comprendre", src: "/assets/evaluation/comprendre.png" },
       { title: "Concevoir", src: "/assets/evaluation/concevoir.png" },
       { title: "Developper", src: "/assets/evaluation/developper.png" }
@@ -194,7 +194,7 @@ export const projects: PortfolioProject[] = [
         alt: "Capture d'ecran du jeu Unity"
       }
     ],
-    evaluationGrid: [
+    supportingDocuments: [
       { title: "Exprimer", src: "/assets/evaluation/exprimer.png" },
       { title: "Entreprendre", src: "/assets/evaluation/entreprendre.png" }
     ],

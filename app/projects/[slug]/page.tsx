@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalLink, Github } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
+import { ImageGallery } from "@/components/image-gallery";
 import { SectionCard } from "@/components/section-card";
 import { siteContent } from "@/lib/site-content";
 import { getServerLocale } from "@/lib/server-locale";
@@ -90,17 +91,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {project.gallery?.length ? (
           <SectionCard className="lg:col-span-2">
             <h2 className="text-2xl font-semibold text-text">
-              {locale === "fr" ? "Captures du projet" : "Project screenshots"}
+              {locale === "fr" ? "Galerie du projet" : "Project gallery"}
             </h2>
-            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {project.gallery.map((item) => (
-                <div key={item.src} className="glass-border overflow-hidden rounded-lg">
-                  <div className="relative aspect-[4/3]">
-                    <Image src={item.src} alt={item.alt} fill className="object-cover" />
-                  </div>
-                  <p className="border-t border-line/20 px-3 py-2 text-sm text-muted">{item.alt}</p>
-                </div>
-              ))}
+            <p className="mt-2 text-sm text-muted">
+              {locale === "fr"
+                ? "Clique sur une image pour l'ouvrir en grand."
+                : "Click an image to open it full screen."}
+            </p>
+            <div className="mt-5">
+              <ImageGallery
+                title={locale === "fr" ? "Captures du projet" : "Project screenshots"}
+                images={project.gallery}
+                locale={locale}
+              />
             </div>
           </SectionCard>
         ) : null}
