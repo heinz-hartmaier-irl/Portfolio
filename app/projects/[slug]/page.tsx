@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink, FileText, Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { SectionCard } from "@/components/section-card";
 import { siteContent } from "@/lib/site-content";
@@ -106,21 +106,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         ) : null}
         {project.evaluationGrid?.length ? (
           <SectionCard className="lg:col-span-2">
-            <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-md bg-gold/[0.12] text-gold">
-                <FileText size={18} />
-              </span>
-              <div>
-                <h2 className="text-2xl font-semibold text-text">
-                  {locale === "fr" ? "Grilles d'evaluation" : "Evaluation grids"}
-                </h2>
-                <p className="mt-1 text-sm text-muted">
-                  {locale === "fr"
-                    ? "Documents integres pour presenter les competences associees au projet."
-                    : "Documents included to present the skills connected to the project."}
-                </p>
-              </div>
-            </div>
+            <h2 className="text-2xl font-semibold text-text">
+              {locale === "fr" ? "Grilles d'accompagnement" : "Supporting grids"}
+            </h2>
+            <p className="mt-2 text-sm text-muted">
+              {locale === "fr"
+                ? "Documents visuels liés au projet pour présenter la démarche et les compétences mobilisées."
+                : "Visual documents linked to the project to present the process and the skills involved."}
+            </p>
             <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {project.evaluationGrid.map((item) => (
                 <a

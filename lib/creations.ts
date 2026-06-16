@@ -19,37 +19,38 @@ export type CreationItem = {
   description: string;
   category: CreationCategory;
   kind: CreationKind;
-  format: string;
   source: string;
   accent: BentoAccent;
   size: CreationSize;
   iconKey: CreationIconKey;
   href?: string;
+  gallery?: {
+    src: string;
+    alt: string;
+  }[];
 };
 
 export const creationItems: CreationItem[] = [
   {
-    slug: "illustration",
-    title: "Illustration",
-    summary: "Composition visuelle simple et lisible.",
-    description: "Export graphique utilise pour tester la hierarchie, les couleurs et le rendu final.",
+    slug: "spiderverse-illustration",
+    title: "Illustration Spiderverse",
+    summary: "Illustration graphique inspirée d'un univers de super-héros.",
+    description: "Composition visuelle servant à travailler l'atmosphère, les couleurs et la lecture finale.",
     category: "graphique",
     kind: "image",
-    format: "PNG",
-    source: "/assets/creations/illustration.png",
+    source: "/assets/creations/spiderverse_illustration.png",
     accent: "gold",
     size: "lg",
     iconKey: "image"
   },
   {
-    slug: "rig",
-    title: "Rig",
-    summary: "Visuel technique et exploratoire.",
-    description: "Rendu documentant une etape de production et la coherence d'un style graphique.",
+    slug: "coffee-shop",
+    title: "Coffee shop",
+    summary: "Maquette visuelle pour un univers de café.",
+    description: "Rendu exploratoire utilisé pour vérifier une ambiance, une hiérarchie et une direction graphique.",
     category: "graphique",
     kind: "image",
-    format: "PNG",
-    source: "/assets/creations/Rig.png",
+    source: "/assets/creations/coffee_shop.png",
     accent: "rose",
     size: "md",
     iconKey: "palette"
@@ -61,7 +62,6 @@ export const creationItems: CreationItem[] = [
     description: "Piece visuelle orientee composition forte, typographie et contraste.",
     category: "graphique",
     kind: "image",
-    format: "JPG",
     source: "/assets/creations/Vergil brutalism.jpg",
     accent: "orange",
     size: "wide",
@@ -74,7 +74,6 @@ export const creationItems: CreationItem[] = [
     description: "Piece consultable en lecture, pensee comme support de communication.",
     category: "graphique",
     kind: "document",
-    format: "PDF",
     source: "/assets/creations/Publicite Alone.pdf",
     accent: "gold",
     size: "md",
@@ -87,7 +86,6 @@ export const creationItems: CreationItem[] = [
     description: "Variante publicitaire avec un traitement editorial propre et exploitable.",
     category: "graphique",
     kind: "document",
-    format: "PDF",
     source: "/assets/creations/Publicite Discovery.pdf",
     accent: "rose",
     size: "md",
@@ -100,7 +98,6 @@ export const creationItems: CreationItem[] = [
     description: "Mise en page axee sur l'ambiance et la structure de lecture.",
     category: "graphique",
     kind: "document",
-    format: "PDF",
     source: "/assets/creations/Publicite Lost.pdf",
     accent: "orange",
     size: "wide",
@@ -113,7 +110,6 @@ export const creationItems: CreationItem[] = [
     description: "Declinaison publicitaire gardant une serie homogene avec une intention visuelle distincte.",
     category: "graphique",
     kind: "document",
-    format: "PDF",
     source: "/assets/creations/Publicite Up.pdf",
     accent: "gold",
     size: "sm",
@@ -126,24 +122,36 @@ export const creationItems: CreationItem[] = [
     description: "Visuel local pour iterer sur les formes, la composition et la lecture generale.",
     category: "graphique",
     kind: "image",
-    format: "PNG",
     source: "/assets/creations/test2_2.png",
     accent: "orange",
     size: "sm",
     iconKey: "image"
   },
   {
-    slug: "montage-0001-0250",
-    title: "Montage 0001-0250",
-    summary: "Sequence video courte.",
-    description: "Extrait video local pour illustrer une etape de montage ou une ambiance visuelle.",
+    slug: "clip-musical-montage",
+    title: "Montage clip musical",
+    summary: "Série d'images issues d'un montage vidéo.",
+    description: "Captures d'écran d'un clip musical monté pour présenter le rythme, les coupes et l'ambiance visuelle.",
     category: "audiovisuel",
     kind: "video",
-    format: "MP4",
-    source: "/assets/creations/0001-0250.mp4",
+    source: "/assets/creations/clip_musical_montage.mp4",
     accent: "gold",
     size: "lg",
-    iconKey: "film"
+    iconKey: "film",
+    gallery: [
+      {
+        src: "/assets/creations/clip_musical_montage_01.png",
+        alt: "Capture 1 du montage du clip musical"
+      },
+      {
+        src: "/assets/creations/clip_musical_montage_02.png",
+        alt: "Capture 2 du montage du clip musical"
+      },
+      {
+        src: "/assets/creations/clip_musical_montage_03.png",
+        alt: "Capture 3 du montage du clip musical"
+      }
+    ]
   },
   {
     slug: "youtube-mn1u0vu42f4",
@@ -152,7 +160,6 @@ export const creationItems: CreationItem[] = [
     description: "Lien public integre au portfolio pour montrer une diffusion externe.",
     category: "reseaux",
     kind: "external",
-    format: "YouTube",
     source: "https://youtu.be/Mn1u0Vu42F4?si=ehNHpZkvZ_0KSex0",
     href: "https://youtu.be/Mn1u0Vu42F4?si=ehNHpZkvZ_0KSex0",
     accent: "gold",
@@ -166,7 +173,6 @@ export const creationItems: CreationItem[] = [
     description: "Publication externe supplementaire pour documenter une autre contribution.",
     category: "reseaux",
     kind: "external",
-    format: "YouTube",
     source: "https://youtu.be/hO01SauATKk?si=3-ZHKL9XUUmRjHNH",
     href: "https://youtu.be/hO01SauATKk?si=3-ZHKL9XUUmRjHNH",
     accent: "orange",
@@ -180,7 +186,6 @@ export const creationItems: CreationItem[] = [
     description: "Premier lien TikTok integre dans la section des projets publies sur les reseaux.",
     category: "reseaux",
     kind: "external",
-    format: "TikTok",
     source: "https://www.tiktok.com/@esnc_official/video/7307012401470131457?is_from_webapp=1&sender_device=pc",
     href: "https://www.tiktok.com/@esnc_official/video/7307012401470131457?is_from_webapp=1&sender_device=pc",
     accent: "rose",
@@ -194,7 +199,6 @@ export const creationItems: CreationItem[] = [
     description: "Autre publication externe pour completer la partie reseaux.",
     category: "reseaux",
     kind: "external",
-    format: "TikTok",
     source: "https://www.tiktok.com/@esnc_official/video/7308509891302264066?is_from_webapp=1&sender_device=pc",
     href: "https://www.tiktok.com/@esnc_official/video/7308509891302264066?is_from_webapp=1&sender_device=pc",
     accent: "gold",
@@ -208,7 +212,6 @@ export const creationItems: CreationItem[] = [
     description: "Dernier lien TikTok pour montrer plusieurs contributions d'une meme famille de contenu.",
     category: "reseaux",
     kind: "external",
-    format: "TikTok",
     source: "https://www.tiktok.com/@esnc_official/video/7307384268307680513?is_from_webapp=1&sender_device=pc",
     href: "https://www.tiktok.com/@esnc_official/video/7307384268307680513?is_from_webapp=1&sender_device=pc",
     accent: "orange",

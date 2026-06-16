@@ -256,7 +256,7 @@ export const siteContent = {
     timeline: frTimeline,
     pages: {
       home: {
-        title: "Portfolio développeur - Bento interactif",
+        title: "Portfolio - Heinz Hartmaier",
         description:
           "Portfolio personnel interactif en Bento Grid pour présenter projets, compétences, expériences, formation, CV et contact."
       },
@@ -322,10 +322,6 @@ export const siteContent = {
           "Création de filtres dynamiques",
           "Lecture de données géographiques"
         ],
-        evaluationTitle: "Évaluation",
-        evaluationDescription: "Retour sur le travail, la qualité et les points améliorables.",
-        evaluationTrigger: "Voir l’évaluation",
-        evaluationEmptyState: "Aucune évaluation disponible pour le moment."
       },
       skills: {
         title: "Compétences",
@@ -376,7 +372,7 @@ export const siteContent = {
     timeline: enTimeline,
     pages: {
       home: {
-        title: "Developer portfolio - Interactive Bento",
+        title: "Portfolio - Heinz Hartmaier",
         description:
           "An interactive Bento Grid portfolio to present projects, skills, experience, education, CV and contact."
       },
@@ -442,10 +438,6 @@ export const siteContent = {
           "Dynamic filter design",
           "Geographic data handling"
         ],
-        evaluationTitle: "Evaluation",
-        evaluationDescription: "Reflection on work quality, outcomes and improvement opportunities.",
-        evaluationTrigger: "View evaluation",
-        evaluationEmptyState: "No evaluation available yet."
       },
       skills: {
         title: "Skills",
