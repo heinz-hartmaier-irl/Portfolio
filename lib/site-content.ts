@@ -141,8 +141,56 @@ const enProjects: PortfolioProject[] = [
     results: ["Interactive map", "Dynamic filters", "Tablet-friendly UI"],
     github: "https://github.com/",
     demo: "#",
-    image: "/map-placeholder.svg",
+    image: "/assets/projects/carte/figma.png",
+    gallery: [
+      {
+        src: "/assets/projects/carte/figma.png",
+        alt: "Figma mockup of the interactive map"
+      },
+      {
+        src: "/assets/projects/carte/carte_phone.png",
+        alt: "Mobile version of the interactive map"
+      },
+      {
+        src: "/assets/projects/carte/hud.png",
+        alt: "Map interface and filters"
+      }
+    ],
+    evaluationGrid: [
+      { title: "Understand", src: "/assets/evaluation/comprendre.png" },
+      { title: "Design", src: "/assets/evaluation/concevoir.png" },
+      { title: "Develop", src: "/assets/evaluation/developper.png" }
+    ],
     category: "web" as ProjectCategory
+  },
+  {
+    slug: "jeu-unity",
+    title: "Unity game",
+    summary: "A game prototype built with Unity and C#.",
+    description:
+      "A video game project focused on a playable scene, asset integration, player interactions and a clear gameplay loop.",
+    technologies: ["Unity", "C#", "Game design", "UI"],
+    challenges: [
+      "Structure a playable Unity scene",
+      "Implement the main player interactions",
+      "Present gameplay through clear screenshots"
+    ],
+    results: ["Playable prototype", "Integrated interface", "Documented project with screenshots"],
+    github: "https://github.com/",
+    demo: "#",
+    image: "/assets/projects/unity/screenshot.png",
+    gallery: [
+      {
+        src: "/assets/projects/unity/screenshot.png",
+        alt: "Unity game screenshot"
+      }
+    ],
+    evaluationGrid: [
+      { title: "Express", src: "/assets/evaluation/exprimer.png" },
+      { title: "Undertake", src: "/assets/evaluation/entreprendre.png" }
+    ],
+    unity: true,
+    category: "audiovisuel" as ProjectCategory
   }
 ];
 
@@ -436,4 +484,3 @@ export const siteContent = {
 export function getSiteContent(locale: Locale) {
   return siteContent[locale];
 }
-

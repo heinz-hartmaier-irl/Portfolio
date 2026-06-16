@@ -34,6 +34,14 @@ export type PortfolioProject = {
   github: string;
   demo: string;
   image: string;
+  gallery?: {
+    src: string;
+    alt: string;
+  }[];
+  evaluationGrid?: {
+    title: string;
+    src: string;
+  }[];
   unity?: boolean;
   category: ProjectCategory;
 };
@@ -142,8 +150,56 @@ export const projects: PortfolioProject[] = [
     results: ["Carte interactive", "Filtres dynamiques", "Interface utilisable sur tablette"],
     github: "https://lavitibeaune.com/mobile",
     demo: "#",
-    image: "/map-placeholder.svg",
+    image: "/assets/projects/carte/figma.png",
+    gallery: [
+      {
+        src: "/assets/projects/carte/figma.png",
+        alt: "Maquette Figma de la carte interactive"
+      },
+      {
+        src: "/assets/projects/carte/carte_phone.png",
+        alt: "Version mobile de la carte interactive"
+      },
+      {
+        src: "/assets/projects/carte/hud.png",
+        alt: "Interface et filtres de la carte"
+      }
+    ],
+    evaluationGrid: [
+      { title: "Comprendre", src: "/assets/evaluation/comprendre.png" },
+      { title: "Concevoir", src: "/assets/evaluation/concevoir.png" },
+      { title: "Developper", src: "/assets/evaluation/developper.png" }
+    ],
     category: "web" as ProjectCategory
+  },
+  {
+    slug: "jeu-unity",
+    title: "Jeu Unity",
+    summary: "Prototype de jeu realise avec Unity et C#.",
+    description:
+      "Projet de jeu video centre sur la creation d'une scene jouable, l'integration d'assets, les interactions joueur et la presentation d'une boucle de gameplay claire.",
+    technologies: ["Unity", "C#", "Game design", "UI"],
+    challenges: [
+      "Structurer une scene jouable dans Unity",
+      "Mettre en place les interactions principales",
+      "Presenter le gameplay avec une capture claire"
+    ],
+    results: ["Prototype jouable", "Interface integree", "Projet documente avec captures"],
+    github: "https://github.com/",
+    demo: "#",
+    image: "/assets/projects/unity/screenshot.png",
+    gallery: [
+      {
+        src: "/assets/projects/unity/screenshot.png",
+        alt: "Capture d'ecran du jeu Unity"
+      }
+    ],
+    evaluationGrid: [
+      { title: "Exprimer", src: "/assets/evaluation/exprimer.png" },
+      { title: "Entreprendre", src: "/assets/evaluation/entreprendre.png" }
+    ],
+    unity: true,
+    category: "audiovisuel" as ProjectCategory
   }
 ] satisfies PortfolioProject[];
 

@@ -1,4 +1,5 @@
-import { CheckCircle2, ScreenShare, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { CheckCircle2, Gamepad2, ScreenShare } from "lucide-react";
 import { EvaluationGridDock } from "@/components/evaluation-grid-dock";
 import { PageShell } from "@/components/page-shell";
 import { SectionCard } from "@/components/section-card";
@@ -10,6 +11,18 @@ export default async function ExperiencePage() {
   const content = siteContent[locale].pages.experience;
   const timeline = siteContent[locale].timeline;
   const highlights = content.internshipHighlights ?? [];
+  const mapScreenshots = [
+    { src: "/assets/projects/carte/figma.png", alt: "Maquette Figma de la carte interactive" },
+    { src: "/assets/projects/carte/carte_phone.png", alt: "Carte interactive sur mobile" },
+    { src: "/assets/projects/carte/hud.png", alt: "Interface et filtres de la carte" }
+  ];
+  const evaluationItems = [
+    { title: "Carte - Comprendre", src: "/assets/evaluation/comprendre.png" },
+    { title: "Carte - Concevoir", src: "/assets/evaluation/concevoir.png" },
+    { title: "Carte - Developper", src: "/assets/evaluation/developper.png" },
+    { title: "Unity - Exprimer", src: "/assets/evaluation/exprimer.png" },
+    { title: "Unity - Entreprendre", src: "/assets/evaluation/entreprendre.png" }
+  ];
 
   return (
     <PageShell eyebrow={content.eyebrow} title={content.heading} description={content.description}>
@@ -22,7 +35,7 @@ export default async function ExperiencePage() {
               </span>
               <div className="glass-border rounded-lg p-5">
                 <p className="text-sm font-medium text-orange">
-                  {item.type} · {item.date}
+                  {item.type} - {item.date}
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold text-text">{item.title}</h2>
                 <p className="mt-3 leading-7 text-muted">{item.description}</p>
@@ -48,26 +61,27 @@ export default async function ExperiencePage() {
                 <div className="glass-border rounded-lg p-4">
                   <div className="flex items-center gap-2 text-sm font-medium text-orange">
                     <ScreenShare size={16} />
-                    Captures à intégrer
+                    Captures du stage
                   </div>
-                  <div className="mt-4 grid aspect-[4/3] place-items-center rounded-lg border border-dashed border-line/25 bg-paper/55 p-4 text-center">
-                    <div className="space-y-2">
-                      <Sparkles size={22} className="mx-auto text-gold" />
-                      <p className="text-sm font-medium text-text">Capture d&apos;écran du projet</p>
-                      <p className="text-sm leading-6 text-muted">
-                        Ajoute ici une vue de la carte interactive, des filtres ou d&apos;un écran clé du stage.
-                      </p>
-                    </div>
+                  <div className="mt-4 grid gap-3">
+                    {mapScreenshots.map((item) => (
+                      <div key={item.src} className="overflow-hidden rounded-lg border border-line/25 bg-paper/55">
+                        <div className="relative aspect-[16/10]">
+                          <Image src={item.src} alt={item.alt} fill className="object-cover" />
+                        </div>
+                        <p className="border-t border-line/20 px-3 py-2 text-xs text-muted">{item.alt}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
                 <div className="glass-border rounded-lg p-4">
                   <div className="flex items-center gap-2 text-sm font-medium text-orange">
                     <CheckCircle2 size={16} />
-                    Compétences valorisées
+                    {content.internshipHighlightsTitle}
                   </div>
                   <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
-                    {highlights.slice(0, 3).map((item) => (
+                    {highlights.map((item) => (
                       <li key={item} className="flex gap-2">
                         <span className="mt-1.5 h-2 w-2 rounded-full bg-gold" />
                         <span>{item}</span>
@@ -80,15 +94,23 @@ export default async function ExperiencePage() {
 
             <div className="space-y-4">
               <div className="glass-border rounded-lg p-4">
-                <p className="text-sm font-medium text-orange">{content.internshipHighlightsTitle}</p>
-                <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
-                  {highlights.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="mt-1.5 h-2 w-2 rounded-full bg-rose" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex items-center gap-2 text-sm font-medium text-orange">
+                  <Gamepad2 size={16} />
+                  Jeu Unity
+                </div>
+                <div className="mt-4 overflow-hidden rounded-lg border border-line/25 bg-paper/55">
+                  <div className="relative aspect-[16/10]">
+                    <Image
+                      src="/assets/projects/unity/screenshot.png"
+                      alt="Capture d'ecran du jeu Unity"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="border-t border-line/20 px-3 py-2 text-sm leading-6 text-muted">
+                    Prototype de jeu video realise avec Unity et C#, presente dans le meme esprit que le stage developpement.
+                  </p>
+                </div>
               </div>
 
               <div className="glass-border rounded-lg p-4">
@@ -99,9 +121,9 @@ export default async function ExperiencePage() {
                     <CheckCircle2 size={18} />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-sm font-medium text-text">Préparer la grille finale</p>
+                    <p className="text-sm font-medium text-text">Grilles disponibles</p>
                     <p className="text-sm leading-6 text-muted">
-                      Le popup accepte une image ou un PDF, avec zoom et plein écran.
+                      Le bouton flottant ouvre les grilles associees a la carte et au jeu Unity, avec zoom et plein ecran.
                     </p>
                   </div>
                 </div>
@@ -115,6 +137,7 @@ export default async function ExperiencePage() {
           subtitle={content.evaluationDescription}
           triggerLabel={content.evaluationTrigger}
           emptyState={content.evaluationEmptyState}
+          mediaItems={evaluationItems}
         />
       </div>
     </PageShell>

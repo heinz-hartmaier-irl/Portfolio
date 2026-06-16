@@ -22,6 +22,11 @@ type EvaluationGridDockProps = {
   emptyState: string;
   mediaSrc?: string;
   mediaType?: "image" | "pdf";
+  mediaItems?: {
+    title: string;
+    src: string;
+    type?: "image" | "pdf";
+  }[];
 };
 
 export function EvaluationGridDock({
@@ -30,13 +35,21 @@ export function EvaluationGridDock({
   triggerLabel,
   emptyState,
   mediaSrc,
-  mediaType = "image"
+  mediaType = "image",
+  mediaItems
 }: EvaluationGridDockProps) {
   const panelRef = useRef<HTMLElement | null>(null);
   const dragControls = useDragControls();
   const [open, setOpen] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [fullscreen, setFullscreen] = useState(false);
+  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  const mediaList = mediaItems?.length
+    ? mediaItems
+    : mediaSrc
+      ? [{ title, src: mediaSrc, type: mediaType }]
+      : [];
+  const activeMedia = mediaList[activeMediaIndex] ?? mediaList[0];
 
   async function closeDock() {
     if (document.fullscreenElement) {
@@ -104,17 +117,17 @@ export function EvaluationGridDock({
     transformOrigin: "top center"
   } as const;
 
-  const previewFrame = mediaSrc ? (
-    mediaType === "pdf" ? (
+  const previewFrame = activeMedia ? (
+    activeMedia.type === "pdf" ? (
       <iframe
-        title={title}
-        src={mediaSrc}
+        title={activeMedia.title}
+        src={activeMedia.src}
         className="h-[72vh] w-full rounded-lg border border-line/25 bg-paper"
       />
     ) : (
       <Image
-        src={mediaSrc}
-        alt={title}
+        src={activeMedia.src}
+        alt={activeMedia.title}
         width={1600}
         height={1200}
         className="block h-auto max-w-none rounded-lg border border-line/25 bg-paper shadow-[0_10px_40px_rgba(0,0,0,0.12)]"
@@ -231,6 +244,27 @@ export function EvaluationGridDock({
           </div>
 
           <div className="relative z-10 mt-3 max-h-[calc(100vh-8rem)] overflow-auto rounded-lg border border-line/20 bg-paper/70 p-3">
+            {mediaList.length > 1 ? (
+              <div className="mb-3 flex flex-wrap gap-2">
+                {mediaList.map((item, index) => (
+                  <button
+                    key={item.src}
+                    type="button"
+                    onClick={() => {
+                      setActiveMediaIndex(index);
+                      setZoom(1);
+                    }}
+                    className={`focus-ring rounded-md border px-3 py-2 text-xs font-medium ${
+                      index === activeMediaIndex
+                        ? "border-gold bg-gold text-ink"
+                        : "border-line/30 bg-navy/80 text-muted"
+                    }`}
+                  >
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+            ) : null}
             <div className="flex justify-center">
               <div className="w-full" style={previewTransform}>
                 {previewFrame}

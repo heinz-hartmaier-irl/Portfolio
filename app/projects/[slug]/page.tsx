@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, FileText, Github } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { SectionCard } from "@/components/section-card";
 import { siteContent } from "@/lib/site-content";
@@ -87,6 +87,58 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ))}
           </ul>
         </SectionCard>
+        {project.gallery?.length ? (
+          <SectionCard className="lg:col-span-2">
+            <h2 className="text-2xl font-semibold text-text">
+              {locale === "fr" ? "Captures du projet" : "Project screenshots"}
+            </h2>
+            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {project.gallery.map((item) => (
+                <div key={item.src} className="glass-border overflow-hidden rounded-lg">
+                  <div className="relative aspect-[4/3]">
+                    <Image src={item.src} alt={item.alt} fill className="object-cover" />
+                  </div>
+                  <p className="border-t border-line/20 px-3 py-2 text-sm text-muted">{item.alt}</p>
+                </div>
+              ))}
+            </div>
+          </SectionCard>
+        ) : null}
+        {project.evaluationGrid?.length ? (
+          <SectionCard className="lg:col-span-2">
+            <div className="flex items-center gap-3">
+              <span className="grid h-10 w-10 place-items-center rounded-md bg-gold/[0.12] text-gold">
+                <FileText size={18} />
+              </span>
+              <div>
+                <h2 className="text-2xl font-semibold text-text">
+                  {locale === "fr" ? "Grilles d'evaluation" : "Evaluation grids"}
+                </h2>
+                <p className="mt-1 text-sm text-muted">
+                  {locale === "fr"
+                    ? "Documents integres pour presenter les competences associees au projet."
+                    : "Documents included to present the skills connected to the project."}
+                </p>
+              </div>
+            </div>
+            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {project.evaluationGrid.map((item) => (
+                <a
+                  key={item.src}
+                  href={item.src}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="focus-ring group glass-border overflow-hidden rounded-lg"
+                >
+                  <div className="relative aspect-[4/3] bg-paper">
+                    <Image src={item.src} alt={item.title} fill className="object-contain p-2 transition group-hover:scale-[1.02]" />
+                  </div>
+                  <p className="border-t border-line/20 px-3 py-2 text-sm font-medium text-text">{item.title}</p>
+                </a>
+              ))}
+            </div>
+          </SectionCard>
+        ) : null}
       </div>
     </PageShell>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { LucideIcon } from "lucide-react";
@@ -13,7 +14,8 @@ import {
   PlaySquare,
   Clapperboard,
   Share2,
-  Sparkles
+  Sparkles,
+  X
 } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 import { SectionCard } from "@/components/section-card";
@@ -54,15 +56,8 @@ const iconMap: Record<CreationIconKey, LucideIcon> = {
 
 function pickHeadline(locale: Locale) {
   return locale === "fr"
-    ? "CrÃ©ations graphiques, audio-visuelles et diffusions publiques."
+    ? "Creations graphiques, audio-visuelles et diffusions publiques."
     : "Graphic work, audiovisual pieces and public releases.";
-}
-
-function gradientFromTitle(title: string) {
-  const normalized = title.length % 3;
-  if (normalized === 0) return "linear-gradient(135deg, #0f172a, #f7c46b, #c85c8e)";
-  if (normalized === 1) return "linear-gradient(135deg, #111827, #f08a5d, #f7c46b)";
-  return "linear-gradient(135deg, #1e2a3a, #8e6cff, #ffb347)";
 }
 
 function categoryTone(category: CreationCategory) {
@@ -97,28 +92,60 @@ function FilterButton({
   );
 }
 
-function CreationBentoCard({ item }: { item: CreationItem }) {
+function CreationPreview({ item }: { item: CreationItem }) {
+  if (item.kind === "image") {
+    return <Image src={item.source} alt={item.title} fill className="object-cover" />;
+  }
+
+  if (item.kind === "video") {
+    return <video src={item.source} className="h-full w-full object-cover" muted loop playsInline />;
+  }
+
+  if (item.kind === "document") {
+    return (
+      <div className="grid h-full place-items-center bg-ink/25">
+        <PlaySquare size={30} className="text-white/85" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid h-full place-items-center bg-ink/25">
+      <Share2 size={30} className="text-white/85" />
+    </div>
+  );
+}
+
+function CreationBentoCard({ item, onOpen }: { item: CreationItem; onOpen: (item: CreationItem) => void }) {
   const Icon = iconMap[item.iconKey];
   const external = item.kind === "external";
 
   return (
-    <article
-      className={`glass-border relative overflow-hidden rounded-lg border border-line/30 p-5 shadow-glow ${previewSizes[item.size]}`}
+    <button
+      type="button"
+      onClick={() => (external && item.href ? window.open(item.href, "_blank", "noreferrer") : onOpen(item))}
+      className={`focus-ring glass-border relative overflow-hidden rounded-lg border border-line/30 p-5 text-left shadow-glow ${previewSizes[item.size]}`}
     >
-      <div className="absolute inset-0 opacity-90" style={{ backgroundImage: gradientFromTitle(item.title) }} aria-hidden="true" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_42%),linear-gradient(180deg,transparent,rgba(15,23,42,0.56))]" />
+      {item.kind !== "external" ? (
+        <div className="absolute inset-0 opacity-75">
+          <CreationPreview item={item} />
+        </div>
+      ) : (
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,#0f172a,#f7c46b,#c85c8e)] opacity-90" />
+      )}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.1),rgba(15,23,42,0.72))]" />
       <div className="relative z-10 flex h-full flex-col justify-between">
         <div className="flex items-start justify-between gap-3">
           <span className={`grid h-11 w-11 place-items-center rounded-md border ${accentClasses[item.accent]}`}>
             <Icon size={20} />
           </span>
-          <span className="rounded-md border border-white/15 bg-ink/25 px-2 py-1 text-[11px] uppercase tracking-[0.14em] text-white/90">
+          <span className="rounded-md border border-white/15 bg-ink/35 px-2 py-1 text-[11px] uppercase tracking-[0.14em] text-white/90">
             {item.format}
           </span>
         </div>
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/80">
-            {external ? "RÃ©seau" : item.category === "graphique" ? "Studio" : "VidÃ©o"}
+            {external ? "Reseau" : item.category === "graphique" ? "Studio" : "Video"}
           </p>
           <h2 className="mt-2 max-w-xs text-2xl font-semibold text-white drop-shadow-[0_2px_10px_rgba(15,23,42,0.35)]">
             {item.title}
@@ -126,22 +153,34 @@ function CreationBentoCard({ item }: { item: CreationItem }) {
           <p className="mt-2 max-w-md text-sm leading-6 text-white/85">{item.summary}</p>
         </div>
       </div>
-    </article>
+    </button>
   );
 }
 
 function CreationEditorialCard({
   item,
-  locale
+  locale,
+  onOpen
 }: {
   item: CreationItem;
   locale: Locale;
+  onOpen: (item: CreationItem) => void;
 }) {
   const Icon = iconMap[item.iconKey];
   const isExternal = item.kind === "external" && item.href;
 
   return (
     <article className="group glass-border flex h-full flex-col overflow-hidden rounded-lg border border-line/30 bg-navy/60 p-5 shadow-glow transition hover:-translate-y-1 hover:border-orange/40">
+      {item.kind !== "external" ? (
+        <button
+          type="button"
+          onClick={() => onOpen(item)}
+          className="focus-ring relative mb-4 aspect-[16/10] overflow-hidden rounded-lg border border-line/25 bg-paper/50"
+        >
+          <CreationPreview item={item} />
+        </button>
+      ) : null}
+
       <div className="flex items-start justify-between gap-3">
         <div className={`grid h-12 w-12 place-items-center rounded-md border ${accentClasses[item.accent]}`}>
           <Icon size={21} />
@@ -163,31 +202,13 @@ function CreationEditorialCard({
 
       <div className="mt-5 grid gap-3 rounded-lg border border-line/20 bg-ink/10 p-4">
         <div className="flex items-center justify-between gap-3 text-xs text-muted">
-          <span>{locale === "fr" ? "Source" : "Source"}</span>
+          <span>Source</span>
           <span className="truncate text-right">{item.source}</span>
         </div>
         <div className="flex items-center justify-between gap-3 text-xs text-muted">
-          <span>{locale === "fr" ? "Format" : "Format"}</span>
+          <span>Format</span>
           <span>{item.kind === "external" ? (locale === "fr" ? "Lien externe" : "External link") : item.kind.toUpperCase()}</span>
         </div>
-      </div>
-
-      <div className="mt-4 flex flex-wrap gap-2">
-        {item.kind === "external" ? (
-          <span className="rounded-md bg-rose/[0.14] px-2 py-1 text-xs text-rose">
-            {locale === "fr" ? "Projet publié" : "Published work"}
-          </span>
-        ) : (
-          <span className="rounded-md bg-gold/[0.12] px-2 py-1 text-xs text-gold">
-            {locale === "fr" ? "Fichier local" : "Local file"}
-          </span>
-        )}
-        {item.kind === "document" ? (
-          <span className="rounded-md bg-navy/80 px-2 py-1 text-xs text-muted">PDF</span>
-        ) : null}
-        {item.kind === "video" ? (
-          <span className="rounded-md bg-navy/80 px-2 py-1 text-xs text-muted">MP4</span>
-        ) : null}
       </div>
 
       <div className="mt-auto flex items-center justify-between gap-4 pt-5">
@@ -198,7 +219,7 @@ function CreationEditorialCard({
               ? "Diffusion publique"
               : "Public release"
             : locale === "fr"
-              ? "Consultation locale"
+              ? "Apercu local"
               : "Local preview"}
         </span>
         {isExternal ? (
@@ -212,9 +233,14 @@ function CreationEditorialCard({
             <ExternalLink size={16} />
           </a>
         ) : (
-          <span className="text-xs text-muted">
-            {locale === "fr" ? "Fichier présent dans le dossier `lib/creation`." : "File stored in `lib/creation`."}
-          </span>
+          <button
+            type="button"
+            onClick={() => onOpen(item)}
+            className="focus-ring inline-flex items-center gap-2 rounded-md text-sm font-medium text-orange transition hover:text-gold"
+          >
+            {locale === "fr" ? "Apercu" : "Preview"}
+            <ExternalLink size={16} />
+          </button>
         )}
       </div>
     </article>
@@ -235,15 +261,13 @@ function SectionHeading({
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
       <div className="max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">
-          {locale === "fr" ? "Catalogue" : "Catalogue"}
-        </p>
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">Catalogue</p>
         <h2 className="mt-2 text-2xl font-semibold text-text">{title}</h2>
         <p className="mt-3 text-sm leading-7 text-muted">{description}</p>
       </div>
       <span className="inline-flex items-center gap-2 rounded-md bg-gold/[0.12] px-3 py-2 text-xs font-medium text-gold">
         <Palette size={14} />
-        {count} {locale === "fr" ? "éléments" : "items"}
+        {count} {locale === "fr" ? "elements" : "items"}
       </span>
     </div>
   );
@@ -257,9 +281,53 @@ function SectionNote({ locale }: { locale: Locale }) {
       </div>
       <p>
         {locale === "fr"
-          ? "Les filtres servent à isoler rapidement une famille de contenus. Le mode 'Tous' garde le rendu éditorial complet."
-          : "Filters help isolate one content family quickly. The 'All' mode keeps the full editorial layout."}
+          ? "Les filtres isolent rapidement une famille de contenus. Clique sur une case locale pour ouvrir l'apercu."
+          : "Filters isolate one content family quickly. Click a local tile to open the preview."}
       </p>
+    </div>
+  );
+}
+
+function CreationModal({
+  item,
+  locale,
+  onClose
+}: {
+  item: CreationItem | null;
+  locale: Locale;
+  onClose: () => void;
+}) {
+  if (!item) return null;
+
+  return (
+    <div className="fixed inset-0 z-[80] bg-ink/80 p-4 backdrop-blur-md" role="dialog" aria-modal="true">
+      <div className="mx-auto flex h-full max-w-6xl flex-col overflow-hidden rounded-lg border border-line/30 bg-navy/95 shadow-glow">
+        <div className="flex items-center justify-between gap-4 border-b border-line/20 p-4">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">{item.format}</p>
+            <h2 className="truncate text-xl font-semibold text-text">{item.title}</h2>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="focus-ring grid h-10 w-10 place-items-center rounded-md border border-line/30 text-muted"
+            aria-label={locale === "fr" ? "Fermer" : "Close"}
+          >
+            <X size={18} />
+          </button>
+        </div>
+        <div className="min-h-0 flex-1 bg-ink/30 p-4">
+          {item.kind === "image" ? (
+            <div className="relative h-full min-h-[60vh]">
+              <Image src={item.source} alt={item.title} fill className="object-contain" />
+            </div>
+          ) : item.kind === "video" ? (
+            <video src={item.source} className="h-full max-h-[75vh] w-full rounded-lg bg-black object-contain" controls />
+          ) : (
+            <iframe title={item.title} src={item.source} className="h-full min-h-[75vh] w-full rounded-lg bg-paper" />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -274,6 +342,7 @@ export function CreationsGallery({
   featuredCreations: CreationItem[];
 }) {
   const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
+  const [selectedCreation, setSelectedCreation] = useState<CreationItem | null>(null);
 
   const counts = useMemo(
     () =>
@@ -297,24 +366,27 @@ export function CreationsGallery({
   );
 
   return (
-    <PageShell eyebrow={locale === "fr" ? "Créations" : "Creative work"} title={locale === "fr" ? "Créations" : "Creations"} description={pickHeadline(locale)}>
+    <PageShell
+      eyebrow={locale === "fr" ? "Creations" : "Creative work"}
+      title={locale === "fr" ? "Creations" : "Creations"}
+      description={pickHeadline(locale)}
+    >
       <div className="space-y-10">
         <SectionCard className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(247,196,107,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(200,92,142,0.12),transparent_30%)]" />
           <div className="relative flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">
-                {locale === "fr" ? "Vue d’ensemble" : "Overview"}
+                {locale === "fr" ? "Vue d'ensemble" : "Overview"}
               </p>
               <h2 className="mt-2 text-3xl font-semibold text-text sm:text-4xl">
                 {locale === "fr"
-                  ? "Un espace unique pour les créations, les vidéos et les contenus publiés."
+                  ? "Un espace unique pour les creations, les videos et les contenus publies."
                   : "One place for creations, videos and published work."}
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
                 {locale === "fr"
-                  ? "Le haut de page mélange quelques éléments au hasard pour garder une entrée vivante, puis les filtres permettent de passer d’une famille de contenu à l’autre sans perdre le style éditorial."
-                  : "The top section mixes a few items at random to keep the entrance lively, then the filters let you switch between content families without losing the editorial feel."}
+                  ? "Les cases affichent maintenant les fichiers locaux quand ils existent, avec un apercu en popup au clic."
+                  : "Tiles now display local files when available, with a click-to-preview modal."}
               </p>
             </div>
             <Link
@@ -329,27 +401,21 @@ export function CreationsGallery({
 
         <section className="grid gap-4 md:grid-cols-4 md:auto-rows-[11rem]">
           {featuredCreations.map((item) => (
-            <CreationBentoCard key={item.slug} item={item} />
+            <CreationBentoCard key={item.slug} item={item} onOpen={setSelectedCreation} />
           ))}
         </section>
 
         <SectionCard>
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-            <SectionHeading
-              title={
-                locale === "fr"
-                  ? "Filtrer par famille de contenu"
-                  : "Filter by content family"
-              }
-              description={
-                locale === "fr"
-                  ? "Les trois catégories servent à garder les créations bien séparées: graphique, audio-visuel et réseaux."
-                  : "The three categories keep the content clearly separated: graphic, audiovisual and social."
-              }
-              count={creations.length}
-              locale={locale}
-            />
-          </div>
+          <SectionHeading
+            title={locale === "fr" ? "Filtrer par famille de contenu" : "Filter by content family"}
+            description={
+              locale === "fr"
+                ? "Les trois categories gardent les creations separees: graphique, audio-visuel et reseaux."
+                : "The three categories keep content separated: graphic, audiovisual and social."
+            }
+            count={creations.length}
+            locale={locale}
+          />
 
           <div className="mt-6 flex flex-wrap gap-3">
             <FilterButton
@@ -385,10 +451,10 @@ export function CreationsGallery({
                     : "Images, PDFs and local graphic compositions."
                   : category === "audiovisuel"
                     ? locale === "fr"
-                      ? "Vidéos et séquences audio-visuelles."
+                      ? "Videos et sequences audio-visuelles."
                       : "Videos and audiovisual pieces."
                     : locale === "fr"
-                      ? "Contenus publiés sur YouTube et TikTok."
+                      ? "Contenus publies sur YouTube et TikTok."
                       : "Content published on YouTube and TikTok."
               }
               count={filteredByCategory[category].length}
@@ -397,12 +463,13 @@ export function CreationsGallery({
 
             <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {filteredByCategory[category].map((item) => (
-                <CreationEditorialCard key={item.slug} item={item} locale={locale} />
+                <CreationEditorialCard key={item.slug} item={item} locale={locale} onOpen={setSelectedCreation} />
               ))}
             </div>
           </SectionCard>
         ))}
       </div>
+      <CreationModal item={selectedCreation} locale={locale} onClose={() => setSelectedCreation(null)} />
     </PageShell>
   );
 }

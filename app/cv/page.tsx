@@ -20,7 +20,7 @@ export default async function CvPage() {
             </p>
           </div>
           <a
-            href={profile.cvPath}
+            href="/api/download-cv"
             download
             className="focus-ring inline-flex items-center gap-2 rounded-md bg-gold px-4 py-2 font-medium text-ink"
           >
