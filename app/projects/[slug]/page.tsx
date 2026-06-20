@@ -22,6 +22,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const locale = await getServerLocale();
   const content = siteContent[locale];
   const project = content.projects.find((item) => item.slug === params.slug);
+  const supportingDocuments = project?.supportingDocuments ?? project?.evaluationGrid;
 
   if (!project) notFound();
 
@@ -93,11 +94,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h2 className="text-2xl font-semibold text-text">
               {locale === "fr" ? "Galerie du projet" : "Project gallery"}
             </h2>
-            <p className="mt-2 text-sm text-muted">
-              {locale === "fr"
-                ? "Clique sur une image pour l'ouvrir en grand."
-                : "Click an image to open it full screen."}
-            </p>
             <div className="mt-5">
               <ImageGallery
                 title={locale === "fr" ? "Captures du projet" : "Project screenshots"}
@@ -107,31 +103,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </SectionCard>
         ) : null}
-        {project.evaluationGrid?.length ? (
+        {supportingDocuments?.length ? (
           <SectionCard className="lg:col-span-2">
             <h2 className="text-2xl font-semibold text-text">
-              {locale === "fr" ? "Grilles d'accompagnement" : "Supporting grids"}
+              {locale === "fr" ? "Grille d'évaluation" : "Evaluation grid"}
             </h2>
-            <p className="mt-2 text-sm text-muted">
-              {locale === "fr"
-                ? "Documents visuels liés au projet pour présenter la démarche et les compétences mobilisées."
-                : "Visual documents linked to the project to present the process and the skills involved."}
-            </p>
-            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {project.evaluationGrid.map((item) => (
-                <a
-                  key={item.src}
-                  href={item.src}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="focus-ring group glass-border overflow-hidden rounded-lg"
-                >
-                  <div className="relative aspect-[4/3] bg-paper">
-                    <Image src={item.src} alt={item.title} fill className="object-contain p-2 transition group-hover:scale-[1.02]" />
-                  </div>
-                  <p className="border-t border-line/20 px-3 py-2 text-sm font-medium text-text">{item.title}</p>
-                </a>
-              ))}
+            <div className="mt-5">
+              <ImageGallery
+                title={locale === "fr" ? "Grille d'évaluation" : "Evaluation grid"}
+                images={(supportingDocuments ?? []).map((item) => ({
+                  src: item.src,
+                  alt: item.title
+                }))}
+                locale={locale}
+              />
             </div>
           </SectionCard>
         ) : null}

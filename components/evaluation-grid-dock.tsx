@@ -1,19 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useDragControls } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ChevronDown,
   Expand,
   FileText,
-  GripVertical,
   Minus,
   Plus,
   Radio,
   ScanSearch,
   X
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 type EvaluationGridDockProps = {
   title: string;
@@ -39,7 +39,11 @@ export function EvaluationGridDock({
   mediaItems
 }: EvaluationGridDockProps) {
   const panelRef = useRef<HTMLElement | null>(null);
-  const dragControls = useDragControls();
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const [open, setOpen] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [fullscreen, setFullscreen] = useState(false);
@@ -68,17 +72,6 @@ export function EvaluationGridDock({
     document.addEventListener("fullscreenchange", syncFullscreen);
     return () => document.removeEventListener("fullscreenchange", syncFullscreen);
   }, []);
-
-  useEffect(() => {
-    if (!open) return;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [open]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -145,8 +138,8 @@ export function EvaluationGridDock({
     </div>
   );
 
-  return (
-    <div className="fixed bottom-4 left-4 z-50">
+  const dock = (
+    <>
       {!open ? (
         <motion.button
           type="button"
@@ -154,8 +147,11 @@ export function EvaluationGridDock({
           animate={{ opacity: 1, y: 0 }}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
-          onClick={() => setOpen(true)}
-          className="relative grid h-12 w-12 place-items-center rounded-full border border-line/30 bg-navy/90 text-text shadow-glow backdrop-blur-xl"
+          onClick={() => {
+            setZoom(1);
+            setOpen(true);
+          }}
+          className="fixed bottom-4 left-4 z-[180] grid h-12 w-12 place-items-center rounded-full border border-line/30 bg-navy/90 text-text shadow-glow backdrop-blur-xl"
           aria-label={triggerLabel}
           title={triggerLabel}
         >
@@ -165,27 +161,13 @@ export function EvaluationGridDock({
       ) : (
         <motion.aside
           ref={panelRef}
-          drag
-          dragControls={dragControls}
-          dragListener={false}
-          dragMomentum={false}
+          drag={false}
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          whileDrag={{ scale: 1.01 }}
-          className={`relative isolate w-[min(38rem,calc(100vw-1rem))] overflow-hidden rounded-lg border border-line/30 bg-navy/92 p-3 pt-10 shadow-glow backdrop-blur-xl ${
-            fullscreen ? "h-full w-full rounded-none border-0" : ""
+          className={`fixed left-1/2 top-1/2 z-[190] w-[min(56rem,calc(100vw-1rem))] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-line/30 bg-navy/92 p-3 pt-10 shadow-glow backdrop-blur-xl ${
+            fullscreen ? "h-[calc(100vh-1rem)] w-[calc(100vw-1rem)] rounded-none border-0" : "max-h-[calc(100vh-1rem)]"
           }`}
         >
-          <button
-            type="button"
-            className="focus-ring absolute left-2 top-2 grid h-8 w-8 place-items-center rounded-md border border-line/30 text-muted"
-            onPointerDown={(event) => dragControls.start(event)}
-            aria-label="Déplacer la grille"
-            title="Déplacer"
-          >
-            <GripVertical size={16} />
-          </button>
-
           <div className="relative z-10 flex flex-wrap items-center gap-3 pr-2">
             <span className="relative grid h-10 w-10 place-items-center rounded-md bg-gold/[0.16] text-gold">
               <FileText size={18} />
@@ -283,6 +265,8 @@ export function EvaluationGridDock({
           </button>
         </motion.aside>
       )}
-    </div>
+    </>
   );
+
+  return mounted ? createPortal(dock, document.body) : null;
 }

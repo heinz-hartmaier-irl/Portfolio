@@ -280,8 +280,7 @@ export const siteContent = {
         title: "Contact",
         eyebrow: "Contact",
         heading: "Échanger autour d'un projet, stage ou entretien.",
-        description:
-          "Le formulaire est prêt côté interface. Il peut être connecté ensuite à Formspree, Resend, une route API Next.js ou un service équivalent.",
+        description: "Formulaire de contact.",
         linksTitle: "Liens directs",
         form: { name: "Nom", email: "Email", message: "Message", submit: "Envoyer" }
       },

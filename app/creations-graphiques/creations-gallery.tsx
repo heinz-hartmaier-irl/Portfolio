@@ -56,8 +56,8 @@ const iconMap: Record<CreationIconKey, LucideIcon> = {
 
 function pickHeadline(locale: Locale) {
   return locale === "fr"
-    ? "Creations graphiques, audio-visuelles et diffusions publiques."
-    : "Graphic work, audiovisual pieces and public releases.";
+    ? "Créations graphiques, audio-visuelles et diffusions."
+    : "Graphic work, audiovisual pieces and releases.";
 }
 
 function categoryTone(category: CreationCategory) {
@@ -169,7 +169,8 @@ function CreationEditorialCard({
 }) {
   const Icon = iconMap[item.iconKey];
   const isExternal = item.kind === "external" && item.href;
-  const kindLabel = item.kind === "external" ? (locale === "fr" ? "Lien externe" : "External link") : item.kind === "video" ? "Vidéo" : item.kind === "document" ? "PDF" : "Image";
+  const kindLabel =
+    item.kind === "external" ? (locale === "fr" ? "Lien externe" : "External link") : item.kind === "video" ? "Vidéo" : item.kind === "document" ? "PDF" : "Image";
 
   return (
     <article className="group glass-border flex h-full flex-col overflow-hidden rounded-lg border border-line/30 bg-navy/60 p-5 shadow-glow transition hover:-translate-y-1 hover:border-orange/40">
@@ -188,9 +189,7 @@ function CreationEditorialCard({
           <Icon size={21} />
         </div>
         <div className="text-right">
-          <div className="rounded-md bg-navy/80 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-muted">
-            {kindLabel}
-          </div>
+          <div className="rounded-md bg-navy/80 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-muted">{kindLabel}</div>
           <div className={`mt-2 text-xs font-semibold uppercase tracking-[0.16em] ${categoryTone(item.category)}`}>
             {formatCreationCategory(item.category, locale)}
           </div>
@@ -204,13 +203,9 @@ function CreationEditorialCard({
 
       <div className="mt-4 flex flex-wrap gap-2">
         {item.kind === "external" ? (
-          <span className="rounded-md bg-rose/[0.14] px-2 py-1 text-xs text-rose">
-            {locale === "fr" ? "Projet publié" : "Published work"}
-          </span>
+          <span className="rounded-md bg-rose/[0.14] px-2 py-1 text-xs text-rose">{locale === "fr" ? "Publié" : "Published"}</span>
         ) : (
-          <span className="rounded-md bg-gold/[0.12] px-2 py-1 text-xs text-gold">
-            {locale === "fr" ? "Fichier local" : "Local file"}
-          </span>
+          <span className="rounded-md bg-gold/[0.12] px-2 py-1 text-xs text-gold">{locale === "fr" ? "Local" : "Local file"}</span>
         )}
       </div>
 
@@ -219,11 +214,11 @@ function CreationEditorialCard({
           {item.kind === "external" ? <Share2 size={14} /> : <PlaySquare size={14} />}
           {item.kind === "external"
             ? locale === "fr"
-              ? "Diffusion publique"
-              : "Public release"
+              ? "Diffusion"
+              : "Release"
             : locale === "fr"
-              ? "Aperçu local"
-              : "Local preview"}
+              ? "Aperçu"
+              : "Preview"}
         </span>
         {isExternal ? (
           <a
@@ -276,17 +271,70 @@ function SectionHeading({
   );
 }
 
-function SectionNote({ locale }: { locale: Locale }) {
-  return (
-    <div className="flex items-start gap-3 rounded-lg border border-line/20 bg-ink/10 p-4 text-sm leading-6 text-muted">
-      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-gold/[0.12] text-gold">
-        <Filter size={16} />
+function CreationCategoryGrid({
+  category,
+  items,
+  locale,
+  onOpen
+}: {
+  category: CreationCategory;
+  items: CreationItem[];
+  locale: Locale;
+  onOpen: (item: CreationItem) => void;
+}) {
+  if (category !== "audiovisuel") {
+    return (
+      <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {items.map((item) => (
+          <CreationEditorialCard key={item.slug} item={item} locale={locale} onOpen={onOpen} />
+        ))}
       </div>
-      <p>
-        {locale === "fr"
-          ? "Les filtres isolent rapidement une famille de contenus. Clique sur une case locale pour ouvrir l'aperçu."
-          : "Filters isolate one content family quickly. Click a local tile to open the preview."}
-      </p>
+    );
+  }
+
+  const captureItems = items.filter((item) => item.kind === "image" && item.gallery?.length);
+  const videoItems = items.filter((item) => item.kind === "video");
+  const otherItems = items.filter((item) => item.kind !== "video" && !(item.kind === "image" && item.gallery?.length));
+
+  return (
+    <div className="mt-6 space-y-8">
+      {captureItems.length ? (
+        <div className="space-y-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">
+              {locale === "fr" ? "Captures du clip" : "Clip captures"}
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {captureItems.map((item) => (
+              <CreationEditorialCard key={item.slug} item={item} locale={locale} onOpen={onOpen} />
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {videoItems.length ? (
+        <div className="space-y-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">
+              {locale === "fr" ? "Audio-visuel" : "Audiovisual"}
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {videoItems.map((item) => (
+              <CreationEditorialCard key={item.slug} item={item} locale={locale} onOpen={onOpen} />
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {otherItems.length ? (
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {otherItems.map((item) => (
+            <CreationEditorialCard key={item.slug} item={item} locale={locale} onOpen={onOpen} />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -417,15 +465,8 @@ export function CreationsGallery({
                 {locale === "fr" ? "Vue d'ensemble" : "Overview"}
               </p>
               <h2 className="mt-2 text-3xl font-semibold text-text sm:text-4xl">
-                {locale === "fr"
-                  ? "Un espace unique pour les créations, les vidéos et les contenus publiés."
-                  : "One place for creations, videos and published work."}
+                {locale === "fr" ? "Créations graphiques, audio-visuelles et réseaux." : "Graphic, audiovisual and social work."}
               </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
-                {locale === "fr"
-                  ? "Les cases affichent maintenant les fichiers locaux quand ils existent, avec un aperçu en popup au clic."
-                  : "Tiles now display local files when available, with a click-to-preview modal."}
-              </p>
             </div>
             <Link
               href="/projects"
@@ -445,12 +486,8 @@ export function CreationsGallery({
 
         <SectionCard>
           <SectionHeading
-            title={locale === "fr" ? "Filtrer par famille de contenu" : "Filter by content family"}
-            description={
-              locale === "fr"
-                ? "Les trois catégories gardent les créations séparées: graphique, audio-visuel et réseaux."
-                : "The three categories keep content separated: graphic, audiovisual and social."
-            }
+            title={locale === "fr" ? "Filtrer" : "Filter"}
+            description={locale === "fr" ? "Graphique, audio-visuel et réseaux." : "Graphic, audiovisual and social."}
             count={creations.length}
             locale={locale}
           />
@@ -472,10 +509,6 @@ export function CreationsGallery({
               />
             ))}
           </div>
-
-          <div className="mt-6">
-            <SectionNote locale={locale} />
-          </div>
         </SectionCard>
 
         {visibleCategories.map((category) => (
@@ -485,25 +518,26 @@ export function CreationsGallery({
               description={
                 category === "graphique"
                   ? locale === "fr"
-                    ? "Images, PDFs et compositions graphiques locales."
-                    : "Images, PDFs and local graphic compositions."
+                    ? "Images, PDFs."
+                    : "Images, PDFs."
                   : category === "audiovisuel"
                     ? locale === "fr"
-                      ? "Vidéos, captures et séquences audio-visuelles."
-                      : "Videos, screenshots and audiovisual pieces."
+                      ? "Vidéos et captures."
+                      : "Videos and screenshots."
                     : locale === "fr"
-                      ? "Contenus publiés sur YouTube et TikTok."
-                      : "Content published on YouTube and TikTok."
+                      ? "Contenus publiés."
+                      : "Published content."
               }
               count={filteredByCategory[category].length}
               locale={locale}
             />
 
-            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {filteredByCategory[category].map((item) => (
-                <CreationEditorialCard key={item.slug} item={item} locale={locale} onOpen={setSelectedCreation} />
-              ))}
-            </div>
+            <CreationCategoryGrid
+              category={category}
+              items={filteredByCategory[category]}
+              locale={locale}
+              onOpen={setSelectedCreation}
+            />
           </SectionCard>
         ))}
       </div>

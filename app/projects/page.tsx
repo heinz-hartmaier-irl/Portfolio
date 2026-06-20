@@ -39,13 +39,10 @@ function LocalProjectCard({
   locale: "fr" | "en";
 }) {
   return (
-    <article className="glass-border overflow-hidden rounded-lg">
-      <div className="relative h-44 border-b border-line/30">
-        <Image src={project.image} alt="" fill className="object-cover" />
-      </div>
+    <article className="group glass-border relative overflow-visible rounded-lg">
       <div className="p-5">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-xl font-semibold text-text">{project.title}</h3>
+          <h3 className="max-w-[calc(100%-6rem)] text-xl font-semibold text-text">{project.title}</h3>
           <span className="rounded-md bg-gold/[0.14] px-2 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-gold">
             {portfolioLabel}
           </span>
@@ -70,6 +67,10 @@ function LocalProjectCard({
             <ArrowRight size={16} />
           </Link>
         </div>
+      </div>
+      <div className="pointer-events-none absolute bottom-4 right-4 hidden h-40 w-60 overflow-hidden rounded-lg border border-line/30 bg-navy/90 shadow-[0_20px_50px_rgba(0,0,0,0.35)] opacity-0 transition duration-300 group-hover:opacity-100 group-hover:-translate-y-1 md:block">
+        <Image src={project.image} alt="" fill className="object-cover transition duration-500 group-hover:scale-105" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,0.25))]" />
       </div>
     </article>
   );

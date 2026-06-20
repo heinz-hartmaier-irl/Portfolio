@@ -1,5 +1,6 @@
-import { Gamepad2, ScreenShare, CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Gamepad2, ScreenShare } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
+import { EvaluationGridDock } from "@/components/evaluation-grid-dock";
 import { ImageGallery } from "@/components/image-gallery";
 import { SectionCard } from "@/components/section-card";
 import { siteContent } from "@/lib/site-content";
@@ -17,6 +18,13 @@ export default async function ExperiencePage() {
   ];
   const unityScreenshots = [
     { src: "/assets/projects/unity/screenshot.png", alt: locale === "fr" ? "Capture du jeu Unity" : "Unity game screenshot" }
+  ];
+  const oralEvaluationDocuments = [
+    { title: locale === "fr" ? "Comprendre" : "Understand", src: "/assets/evaluation/comprendre.png" },
+    { title: locale === "fr" ? "Concevoir" : "Design", src: "/assets/evaluation/concevoir.png" },
+    { title: locale === "fr" ? "Développer" : "Develop", src: "/assets/evaluation/developper.png" },
+    { title: locale === "fr" ? "Exprimer" : "Express", src: "/assets/evaluation/exprimer.png" },
+    { title: locale === "fr" ? "Entreprendre" : "Undertake", src: "/assets/evaluation/entreprendre.png" }
   ];
 
   return (
@@ -171,6 +179,18 @@ export default async function ExperiencePage() {
           </div>
         </SectionCard>
       </div>
+
+      <EvaluationGridDock
+        title={locale === "fr" ? "Grille d'évaluation" : "Evaluation grid"}
+        subtitle={locale === "fr" ? "Oral - présentation des expériences" : "Oral - experience presentation"}
+        triggerLabel={locale === "fr" ? "Ouvrir la grille d'évaluation" : "Open evaluation grid"}
+        emptyState={locale === "fr" ? "Aucune grille d'évaluation disponible." : "No evaluation grid available."}
+        mediaItems={oralEvaluationDocuments.map((item) => ({
+          title: item.title,
+          src: item.src,
+          type: "image"
+        }))}
+      />
     </PageShell>
   );
 }
