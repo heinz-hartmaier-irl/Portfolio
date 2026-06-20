@@ -264,8 +264,7 @@ export const siteContent = {
         title: "À propos",
         eyebrow: "Présentation",
         heading: "Un développeur qui découvre le monde.",
-        description:
-          "Cette page sert de base éditable pour présenter le parcours, les méthodes de travail et les objectifs professionnels.",
+        description: "",
         sectionOneTitle: "Qui suis-je ?",
         sectionOneText:
           "Je suis {name}, développeur web qui a débuté dans le développement d'applications web interactives il y a quelques années et qui cherche à trouver l'équilibre entre créativité et fonctionnalité.",
@@ -273,14 +272,13 @@ export const siteContent = {
         sectionTwoText:
           "Consolider mes compétences en développement web moderne, rejoindre des projets intéressants et continuer à progresser sur l'architecture, la performance, l'accessibilité et la qualité des interfaces.",
         sectionThreeTitle: "Parcours",
-        sectionThreeText:
-          "Le portfolio est structuré pour être utilisé pendant des candidatures ou entretiens : projets détaillés, difficultés rencontrées, technologies utilisées, résultats obtenus et liens vers les réalisations. Les textes peuvent être personnalisés dans lib/content.ts."
+        sectionThreeText: "Projets, expériences, compétences et liens utiles."
       },
       contact: {
         title: "Contact",
         eyebrow: "Contact",
         heading: "Échanger autour d'un projet, stage ou entretien.",
-        description: "Formulaire de contact.",
+        description: "",
         linksTitle: "Liens directs",
         form: { name: "Nom", email: "Email", message: "Message", submit: "Envoyer" }
       },
@@ -290,7 +288,7 @@ export const siteContent = {
         heading: "CV consultable et téléchargeable.",
         description: "Mon cv le plus récent.",
         titleCard: "Curriculum vitae",
-        body: "Le bouton pointe vers le fichier attendu : {path}.",
+        body: "",
         download: "Télécharger",
         preview: "Aperçu du CV"
       },
@@ -298,7 +296,7 @@ export const siteContent = {
         title: "Formation",
         eyebrow: "Formation",
         heading: "Diplômes, apprentissages et progression.",
-        description: "Une page dédiée au parcours scolaire, aux modules techniques et aux certifications.",
+        description: "",
         moduleTitle: "Modules clés",
         skillsTitle: "Compétences travaillées",
         firstTitle: "BUT MMI - Spécialité développement web",
@@ -309,7 +307,7 @@ export const siteContent = {
         title: "Expériences",
         eyebrow: "Expériences",
         heading: "Parcours professionnel et projets marquants.",
-        description: "Une timeline pour présenter les stages, missions, responsabilités et résultats.",
+        description: "",
         internshipEyebrow: "Stage",
         internshipHeading: "Stage développement",
         internshipDescription:
@@ -326,15 +324,14 @@ export const siteContent = {
         title: "Compétences",
         eyebrow: "Compétences",
         heading: "Une vue claire des technologies maîtrisées.",
-        description: "Les compétences sont organisées par familles et reliées aux projets qui les utilisent.",
+        description: "",
         projectsTitle: "Compétences reliées aux projets"
       },
       projects: {
         title: "Projets",
         eyebrow: "Réalisations",
-        heading: "Mes projets, classés par domaine et enrichis avec mes étoiles GitHub.",
-        description:
-          "La page sépare les projets web, audio-visuels et graphiques, puis rassemble les dépôts GitHub publics que tu as marqués d'une étoile.",
+        heading: "Mes différents projets",
+        description: "",
         starredTitle: "Étoiles GitHub",
         inspirationTitle: "Inspirations GitHub",
         inspirationBody: "Dépôts étoilés hors de ton espace personnel.",
@@ -379,8 +376,7 @@ export const siteContent = {
         title: "About",
         eyebrow: "Profile",
         heading: "A developer discovering the world.",
-        description:
-          "This page is an editable base for presenting background, working methods and professional goals.",
+        description: "",
         sectionOneTitle: "Who am I?",
         sectionOneText:
           "I am {name}, a web developer who began building interactive web applications a few years ago and is looking for the balance between creativity and functionality.",
@@ -388,15 +384,13 @@ export const siteContent = {
         sectionTwoText:
           "Strengthen my modern web development skills, join demanding projects and keep improving architecture, performance, accessibility and interface quality.",
         sectionThreeTitle: "Background",
-        sectionThreeText:
-          "The portfolio is structured to be used during applications or interviews: detailed projects, challenges, technologies, outcomes and links to the work. The texts can be customized in lib/content.ts."
+        sectionThreeText: "Projects, experience, skills and useful links."
       },
       contact: {
         title: "Contact",
         eyebrow: "Contact",
         heading: "Talk about a project, internship or interview.",
-        description:
-          "The form is ready on the UI side. It can later be connected to Formspree, Resend, a Next.js API route or an equivalent service.",
+        description: "",
         linksTitle: "Direct links",
         form: { name: "Name", email: "Email", message: "Message", submit: "Send" }
       },
@@ -406,7 +400,7 @@ export const siteContent = {
         heading: "View and download the CV.",
         description: "My most recent CV.",
         titleCard: "Curriculum vitae",
-        body: "The button points to the expected file: {path}.",
+        body: "",
         download: "Download",
         preview: "CV preview"
       },
@@ -414,7 +408,7 @@ export const siteContent = {
         title: "Education",
         eyebrow: "Education",
         heading: "Diplomas, learning and progression.",
-        description: "A page dedicated to academic background, technical modules and certifications.",
+        description: "",
         moduleTitle: "Key modules",
         skillsTitle: "Skills practiced",
         firstTitle: "Bachelor's degree in Multimedia and Internet Professions",
@@ -425,7 +419,7 @@ export const siteContent = {
         title: "Experience",
         eyebrow: "Experience",
         heading: "Professional background and notable projects.",
-        description: "A timeline for internships, tasks, responsibilities and outcomes.",
+        description: "",
         internshipEyebrow: "Internship",
         internshipHeading: "Development internship",
         internshipDescription:
@@ -442,15 +436,14 @@ export const siteContent = {
         title: "Skills",
         eyebrow: "Skills",
         heading: "A clear view of the technologies I use.",
-        description: "Skills are grouped by families and linked to the projects that use them.",
+        description: "",
         projectsTitle: "Skills linked to projects"
       },
       projects: {
         title: "Projects",
         eyebrow: "Work",
-        heading: "My projects, organized by domain and enriched with my GitHub stars.",
-        description:
-          "The page separates web, audiovisual and graphic work, then highlights the public GitHub repositories you have starred.",
+        heading: "My different projects",
+        description: "",
         starredTitle: "GitHub stars",
         inspirationTitle: "GitHub inspirations",
         inspirationBody: "Starred repositories outside your personal space.",

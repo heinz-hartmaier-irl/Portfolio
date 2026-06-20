@@ -57,7 +57,11 @@ export default async function ExperiencePage() {
                 <h2 className="mt-3 text-3xl font-semibold text-text sm:text-4xl">
                   {content.internshipHeading}
                 </h2>
-                <p className="mt-4 max-w-2xl leading-7 text-muted">{content.internshipDescription}</p>
+                <p className="mt-4 max-w-2xl leading-7 text-muted">
+                  {locale === "fr"
+                    ? "Stage réalisé pendant ma 2ème année de BUT MMI au sein de la Viti de Beaune où j'ai développer une carte interactive au service de l'établissment pour différent contecte dont les journées porte ouverte."
+                    : content.internshipDescription}
+                </p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -99,7 +103,7 @@ export default async function ExperiencePage() {
                 </p>
                 <p className="mt-3 text-sm leading-6 text-muted">
                   {locale === "fr"
-                    ? "Ce stage correspond à la carte interactive et à son intégration web. Il s'agit d'une expérience de terrain distincte du projet Unity."
+                    ? "Stage réalisé pendant ma 2ème année de BUT MMI au sein de la Viti de Beaune où j'ai développer une carte interactive au service de l'établissment pour différent contecte dont les journées porte ouverte."
                     : "This internship covers the interactive map and its web integration. It is a field experience separate from the Unity project."}
                 </p>
               </div>
@@ -141,6 +145,16 @@ export default async function ExperiencePage() {
                   ? "Ce projet Unity est un exercice de cours distinct du stage. Il sert à montrer la conception d'un jeu, la structure du prototype et la mise en place de l'interface."
                   : "This Unity project is a class assignment separate from the internship. It shows game design, prototype structure and interface setup."}
               </p>
+              <div className="glass-border rounded-lg p-4">
+                <p className="text-sm font-medium text-orange">
+                  {locale === "fr" ? "Contexte" : "Context"}
+                </p>
+                <p className="mt-3 text-sm leading-6 text-muted">
+                  {locale === "fr"
+                    ? "Projet de cours (SAE) qui fait se rejoindre plusieurs aspects de la filière dans un projet commun aux différentes spécialités : la création d'un jeu vidéo avec Unity ainsi que de sa promotion."
+                    : "Course project combining several parts of the curriculum in a shared project across specializations: creating a video game with Unity and promoting it."}
+                </p>
+              </div>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
