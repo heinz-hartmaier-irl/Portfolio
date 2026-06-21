@@ -24,7 +24,7 @@ Le site sera disponible sur `http://localhost:3000`.
 ## Personnalisation
 
 - Modifier le profil, les projets, compétences et expériences dans `lib/content.ts`.
-- Ajouter le CV dans `public/cv.pdf`.
+- Le CV est servi par `/api/cv` et téléchargé via `/api/download-cv`.
 - Ajouter les musiques dans `public/music/` avec les noms configurés dans `lib/content.ts`.
 - Pour Unity, exporter le jeu en WebGL puis placer la build dans `public/unity/jeu-unity`.
 

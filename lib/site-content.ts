@@ -45,7 +45,7 @@ const enProfile = {
   github: "https://github.com/heinz-hartmaier-irl",
   linkedin: "https://www.linkedin.com/in/heinz-hartmaier-9b911326b/",
   location: "France",
-  cvPath: "/cv.pdf"
+  cvPath: "/api/cv"
 };
 
 const enBentoItems: BentoItem[] = [
@@ -272,7 +272,8 @@ export const siteContent = {
         sectionTwoText:
           "Consolider mes compétences en développement web moderne, rejoindre des projets intéressants et continuer à progresser sur l'architecture, la performance, l'accessibilité et la qualité des interfaces.",
         sectionThreeTitle: "Parcours",
-        sectionThreeText: "Projets, expériences, compétences et liens utiles."
+        sectionThreeText:
+          "Après avoir suivi une formation générale, j'ai décidé de me former dans le domaine du multimédia en rejoignant la MMI."
       },
       contact: {
         title: "Contact",

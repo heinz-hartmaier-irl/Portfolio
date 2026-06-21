@@ -58,7 +58,7 @@ export const profile = {
   github: "https://github.com/heinz-hartmaier-irl",
   linkedin: "https://www.linkedin.com/in/heinz-hartmaier-9b911326b/",
   location: "France",
-  cvPath: "/cv.pdf"
+  cvPath: "/api/cv"
 };
 
 export const bentoItems = [

@@ -24,7 +24,7 @@ export async function GET() {
   return new NextResponse(file, {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": 'attachment; filename="cv-heinz-hartmaier.pdf"'
+      "Content-Disposition": 'inline; filename="cv-heinz-hartmaier.pdf"'
     }
   });
 }
