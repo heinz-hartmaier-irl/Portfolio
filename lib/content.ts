@@ -233,21 +233,27 @@ export const skillGroups = [
 export const timeline = [
   {
     date: "2026",
-    title: "Portfolio interactif",
-    type: "Projet personnel",
-    description: "Création d'un portfolio Bento Grid pour présenter projets, compétences et CV."
+    title: "Stage développeur web",
+    type: "Expérience",
+    description: "Refonte d'un site web et travail sur la communication digitale d'une entreprise."
   },
   {
     date: "2025",
-    title: "Stage développement",
+    title: "Stage développeur web",
     type: "Expérience",
     description: "Participation à un projet de carte interactive et à la conception d'interfaces d'une application web."
   },
   {
-    date: "2023",
-    title: "BUT Métier du Multimédia et de l'Internet",
+    date: "2025",
+    title: "DUT Métier du Multimédia et de l'Internet",
     type: "Formation",
     description: "Apprentissage du développement web, de la création numérique et de la communication."
+  },
+  {
+    date: "2022",
+    title: "Stage Tournage et Montage vidéo",
+    type: "Expérience",
+    description: "Stage de tournage et montage vidéo pour un projet de court-métrage, incluant la gestion des caméras, l'éclairage et le montage final du making-of."
   }
 ];
 

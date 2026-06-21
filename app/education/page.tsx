@@ -11,9 +11,14 @@ export default async function EducationPage() {
     <PageShell eyebrow={content.eyebrow} title={content.heading} description={content.description}>
       <div className="grid gap-4 md:grid-cols-2">
         <SectionCard>
-          <p className="text-sm font-medium text-orange">2024 - 2026</p>
+          <p className="text-sm font-medium text-orange">2023 - 2026</p>
           <h2 className="mt-2 text-2xl font-semibold text-text">{content.firstTitle}</h2>
           <p className="mt-4 leading-7 text-muted">{content.firstText}</p>
+        </SectionCard>
+        <SectionCard>
+          <p className="text-sm font-medium text-orange">2022</p>
+          <h2 className="mt-2 text-2xl font-semibold text-text">{content.thirdTitle}</h2>
+          <p className="mt-4 leading-7 text-muted">{content.thirdText}</p>
         </SectionCard>
         <SectionCard>
           <p className="text-sm font-medium text-orange">{content.moduleTitle}</p>

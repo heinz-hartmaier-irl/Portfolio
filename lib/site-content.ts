@@ -302,7 +302,9 @@ export const siteContent = {
         skillsTitle: "Compétences travaillées",
         firstTitle: "BUT MMI - Spécialité développement web",
         firstText: "Développement web, bases de données, gestion de projet, Git et mise en production d'applications.",
-        secondText: "Interfaces responsive, API, SQL, sécurité de base, accessibilité, documentation et présentation de projet."
+        secondText: "Interfaces responsive, API, SQL, sécurité de base, accessibilité, documentation et présentation de projet.",
+        thirdTitle: "BACCALAURÉAT Général",
+        thirdText: "Spécialité : Arts (Cinéma-Audiovisuel), Sciences de la vie et de la terre."
       },
       experience: {
         title: "Expériences",
@@ -414,7 +416,9 @@ export const siteContent = {
         skillsTitle: "Skills practiced",
         firstTitle: "Bachelor's degree in Multimedia and Internet Professions",
         firstText: "Web development, databases, project management, Git and deployment of applications.",
-        secondText: "Responsive interfaces, APIs, SQL, basic security, accessibility, documentation and project presentation."
+        secondText: "Responsive interfaces, APIs, SQL, basic security, accessibility, documentation and project presentation.",
+        thirdTitle: "General Baccalaureate",
+        thirdText: "Specialty: Arts (Cinema-Audiovisual), Life and Earth Sciences."
       },
       experience: {
         title: "Experience",

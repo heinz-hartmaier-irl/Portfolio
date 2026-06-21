@@ -142,8 +142,8 @@ export default async function ExperiencePage() {
               </h2>
               <p className="max-w-2xl leading-7 text-muted">
                 {locale === "fr"
-                  ? "Ce projet Unity est un exercice de cours distinct du stage. Il sert à montrer la conception d'un jeu, la structure du prototype et la mise en place de l'interface."
-                  : "This Unity project is a class assignment separate from the internship. It shows game design, prototype structure and interface setup."}
+                  ? "Ce projet Unity est un exercice de cours de type SAE. Il sert à montrer la conception d'un jeu, la structure du prototype et la mise en place de l'interface."
+                  : "This Unity project is a class assignment of type SAE. It shows game design, prototype structure and interface setup."}
               </p>
               <div className="glass-border rounded-lg p-4">
                 <p className="text-sm font-medium text-orange">
@@ -181,11 +181,31 @@ export default async function ExperiencePage() {
                   </li>
                   <li className="flex gap-2">
                     <span className="mt-1.5 h-2 w-2 rounded-full bg-gold" />
-                    <span>{locale === "fr" ? "Présenter la logique du gameplay" : "Present gameplay logic"}</span>
+                    <span>{locale === "fr" ? "Allier la conception et l'intégration des autres spécialités" : "Combine design and implementation of the other specializations"}</span>
                   </li>
                   <li className="flex gap-2">
                     <span className="mt-1.5 h-2 w-2 rounded-full bg-gold" />
-                    <span>{locale === "fr" ? "Distinguer le projet du stage" : "Keep it separate from the internship"}</span>
+                    <span>{locale === "fr" ? "Rendre le projet dans les temps" : "Deliver the project on time"}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="glass-border rounded-lg p-4">
+                <p className="text-sm font-medium text-orange">
+                  {locale === "fr" ? "À retenir" : "Key points"}
+                </p>
+                <ul className="mt-4 space-y-3 text-sm leading-6 text-muted">
+                  <li className="flex gap-2">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-rose" />
+                    <span>{locale === "fr" ? "Jeu fait en C#" : "Game in C#"}</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-rose" />
+                    <span>{locale === "fr" ? "Moteur Unity" : "Unity engine"}</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-rose" />
+                    <span>{locale === "fr" ? "Modélisation" : "Modeling"}</span>
                   </li>
                 </ul>
               </div>
