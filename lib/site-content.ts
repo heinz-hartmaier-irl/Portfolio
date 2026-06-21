@@ -121,7 +121,7 @@ const enProjects: PortfolioProject[] = [
       "Make content easy to update"
     ],
     results: ["Clear navigation", "Deployable on Vercel", "Scalable architecture"],
-    github: "https://github.com/",
+    github: "https://portfolio-heinz-hartmaier.vercel.app/",
     demo: "/",
     image: "/project-placeholder.svg",
     category: "web" as ProjectCategory
@@ -139,7 +139,7 @@ const enProjects: PortfolioProject[] = [
       "Improve mobile readability"
     ],
     results: ["Interactive map", "Dynamic filters", "Tablet-friendly UI"],
-    github: "https://github.com/",
+    github: "https://lavitibeaune.com/mobile",
     demo: "#",
     image: "/assets/projects/carte/figma.png",
     gallery: [

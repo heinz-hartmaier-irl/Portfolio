@@ -134,7 +134,7 @@ export const projects: PortfolioProject[] = [
       "Prévoir des contenus faciles à mettre à jour"
     ],
     results: ["Navigation claire", "Base déployable sur Vercel", "Architecture évolutive"],
-    github: "https://github.com/",
+    github: "https://portfolio-heinz-hartmaier.vercel.app/",
     demo: "/",
     image: "/project-placeholder.svg",
     category: "web" as ProjectCategory
